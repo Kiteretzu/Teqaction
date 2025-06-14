@@ -97,6 +97,10 @@ export default function Home() {
           />
           Go to nextjs.org →
         </a>
+
+        <p className="font-barlow text-xl font-bold text-red-500">
+          this is the the new font barlow
+        </p>
       </footer>
     </div>
   );
