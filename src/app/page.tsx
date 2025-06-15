@@ -1,107 +1,136 @@
-import Image from "next/image";
+'use client';
+
+import { useState } from "react";
+import Button from "./components/Button";
+import InteractiveGrid from "./components/InteractiveGrid";
+import { FloatingDock } from "./components/InfiniteScrollServices";
+import {
+  Code,
+  Palette,
+  Smartphone,
+  Globe,
+  Database,
+  Shield,
+  Zap,
+  Camera,
+  Headphones,
+  Rocket,
+  Target,
+  Users,
+  TrendingUp,
+  Heart,
+  Star,
+} from "lucide-react"
 
 export default function Home() {
+   const [isHovered, setIsHovered] = useState(false);
+   const allServices = [
+  {
+    title: "Web Development",
+    icon: <Globe className="h-full w-full text-neutral-500 dark:text-neutral-300" />,
+    href: "#web-dev",
+    description: "Custom websites and web applications",
+  },
+  {
+    title: "Mobile Apps",
+    icon: <Smartphone className="h-full w-full text-neutral-500 dark:text-neutral-300" />,
+    href: "#mobile",
+    description: "iOS and Android app development",
+  },
+  {
+    title: "UI/UX Design",
+    icon: <Palette className="h-full w-full text-neutral-500 dark:text-neutral-300" />,
+    href: "#design",
+    description: "Beautiful and intuitive user interfaces",
+  },
+  {
+    title: "Backend Development",
+    icon: <Database className="h-full w-full text-neutral-500 dark:text-neutral-300" />,
+    href: "#backend",
+    description: "Scalable server-side solutions",
+  },
+  {
+    title: "DevOps",
+    icon: <Shield className="h-full w-full text-neutral-500 dark:text-neutral-300" />,
+    href: "#devops",
+    description: "Deployment and infrastructure management",
+  },
+  {
+    title: "Performance Optimization",
+    icon: <Zap className="h-full w-full text-neutral-500 dark:text-neutral-300" />,
+    href: "#performance",
+    description: "Speed up your applications",
+  },
+  {
+    title: "Photography",
+    icon: <Camera className="h-full w-full text-neutral-500 dark:text-neutral-300" />,
+    href: "#photography",
+    description: "Professional photography services",
+  },
+  {
+    title: "Audio Production",
+    icon: <Headphones className="h-full w-full text-neutral-500 dark:text-neutral-300" />,
+    href: "#audio",
+    description: "Music and podcast production",
+  },
+  {
+    title: "Startup Consulting",
+    icon: <Rocket className="h-full w-full text-neutral-500 dark:text-neutral-300" />,
+    href: "#consulting",
+    description: "Launch your business idea",
+  },
+  {
+    title: "Digital Marketing",
+    icon: <Target className="h-full w-full text-neutral-500 dark:text-neutral-300" />,
+    href: "#marketing",
+    description: "Grow your online presence",
+  },
+  {
+    title: "Team Building",
+    icon: <Users className="h-full w-full text-neutral-500 dark:text-neutral-300" />,
+    href: "#team",
+    description: "Build high-performing teams",
+  },
+  {
+    title: "Growth Strategy",
+    icon: <TrendingUp className="h-full w-full text-neutral-500 dark:text-neutral-300" />,
+    href: "#growth",
+    description: "Scale your business effectively",
+  },
+  {
+    title: "Brand Identity",
+    icon: <Heart className="h-full w-full text-neutral-500 dark:text-neutral-300" />,
+    href: "#branding",
+    description: "Create memorable brand experiences",
+  },
+  {
+    title: "Quality Assurance",
+    icon: <Star className="h-full w-full text-neutral-500 dark:text-neutral-300" />,
+    href: "#qa",
+    description: "Ensure product excellence",
+  },
+  {
+    title: "Custom Development",
+    icon: <Code className="h-full w-full text-neutral-500 dark:text-neutral-300" />,
+    href: "#custom",
+    description: "Tailored software solutions",
+  },
+]
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
-
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
-        </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-
-        <p className="font-barlow text-xl font-bold text-red-500">
-          this is the the new font barlow
-        </p>
-      </footer>
+   
+    <InteractiveGrid>
+    <div className="w-screen h-screen  flex flex-col justify-between">
+    <Button label="Component" link="/home" position="right" />
+    
+    <FloatingDock items={allServices} />
+    
     </div>
+    </InteractiveGrid>
+  
+
+  
+   
+
+   
   );
 }
