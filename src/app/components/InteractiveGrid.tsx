@@ -61,13 +61,14 @@ export default function InteractiveGrid({ children }: InteractiveGridProps) {
   }
 
   return (
+    <>
     <div
       ref={containerRef}
-      className="min-h-screen bg-gradient-to-t from-black via-gray-900 to-black relative overflow-hidden"
+      className="h-[80vh] bg-gradient-to-t from-black via-gray-900 to-black relative overflow-hidden"
       onMouseMove={handleMouseMove}
     >
       {/* Animated SVG Background */}
-      <div className="absolute inset-0 z-0 pointer-events-none">
+      <div className="absolute  inset-0 z-0 pointer-events-none">
         <svg className="w-full h-full" style={{ minHeight: "100vh", minWidth: "100vw" }}>
           <defs>
             <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
@@ -178,5 +179,7 @@ export default function InteractiveGrid({ children }: InteractiveGridProps) {
       {/* Content goes here */}
       <div className="relative z-10">{children}</div>
     </div>
+    
+    </>
   )
 }

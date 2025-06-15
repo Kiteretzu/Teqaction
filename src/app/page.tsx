@@ -117,15 +117,18 @@ export default function Home() {
   },
 ]
   return (
-   
+   <>
     <InteractiveGrid>
     <div className="w-screen h-screen  flex flex-col justify-between">
     <Button label="Component" link="/home" position="right" />
     
-    <FloatingDock items={allServices} />
+    
     
     </div>
     </InteractiveGrid>
+    
+    
+    </>
   
 
   
