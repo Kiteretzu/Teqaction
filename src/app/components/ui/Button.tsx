@@ -20,7 +20,7 @@ const Button: React.FC<ButtonProps> = ({ label, link, position = 'left' }) => {
   }[position];
 
   return (
-    <div className={`flex ${positionClass} m-5`}>
+    <div className={`flex ${positionClass} m-5 z-10 `}>
       <Link href={link} className="flex group">
         <div
           onMouseEnter={() => setIsHovered(true)}
