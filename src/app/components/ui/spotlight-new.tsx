@@ -1,5 +1,4 @@
 "use client";
-import React from "react";
 import { motion } from "motion/react";
 
 type SpotlightProps = {
@@ -12,18 +11,20 @@ type SpotlightProps = {
   smallWidth?: number;
   duration?: number;
   xOffset?: number;
+  flickerDuration?: number;
 };
 
 export const Spotlight = ({
-  gradientFirst = "radial-gradient(68.54% 68.72% at 55.02% 31.46%, hsla(210, 100%, 85%, .08) 0, hsla(210, 100%, 55%, .02) 50%, hsla(210, 100%, 45%, 0) 80%)",
-  gradientSecond = "radial-gradient(50% 50% at 50% 50%, hsla(210, 100%, 85%, .06) 0, hsla(210, 100%, 55%, .02) 80%, transparent 100%)",
-  gradientThird = "radial-gradient(50% 50% at 50% 50%, hsla(210, 100%, 85%, .04) 0, hsla(210, 100%, 45%, .02) 80%, transparent 100%)",
-  translateY = -350,
+  gradientFirst = "radial-gradient(68.54% 68.72% at 55.02% 31.46%, hsla(210, 100%, 85%, .075) 0, hsla(210, 100%, 55%, .037) 50%, hsla(210, 100%, 45%, 0) 80%)",
+  gradientSecond = "radial-gradient(50% 50% at 50% 50%, hsla(210, 100%, 85%, .048) 0, hsla(210, 100%, 55%, .024) 80%, transparent 100%)",
+  gradientThird = "radial-gradient(50% 50% at 50% 50%, hsla(210, 100%, 85%, .024) 0, hsla(210, 100%, 45%, .012) 80%, transparent 100%)",
+  translateY = -650,
   width = 560,
-  height = 1380,
+  height = 1680,
   smallWidth = 240,
   duration = 7,
   xOffset = 100,
+  flickerDuration = 2,
 }: SpotlightProps = {}) => {
   return (
     <motion.div
@@ -31,22 +32,26 @@ export const Spotlight = ({
         opacity: 0,
       }}
       animate={{
-        opacity: 1,
+        opacity: [0, 0.3, 0, 0.7, 0.1, 0.9, 0.2, 1, 0.8, 1],
       }}
       transition={{
-        duration: 1.5,
+        duration: flickerDuration,
+        times: [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.9, 1],
+        ease: "easeInOut",
       }}
       className="pointer-events-none absolute inset-0 h-full w-full"
     >
       <motion.div
+        initial={{ x: 0 }}
         animate={{
           x: [0, xOffset, 0],
         }}
         transition={{
           duration,
-          repeat: Infinity,
+          repeat: Number.POSITIVE_INFINITY,
           repeatType: "reverse",
           ease: "easeInOut",
+          delay: flickerDuration, // Start movement after flickering
         }}
         className="absolute top-0 left-0 w-screen h-screen z-40 pointer-events-none"
       >
@@ -82,14 +87,16 @@ export const Spotlight = ({
       </motion.div>
 
       <motion.div
+        initial={{ x: 0 }}
         animate={{
           x: [0, -xOffset, 0],
         }}
         transition={{
           duration,
-          repeat: Infinity,
+          repeat: Number.POSITIVE_INFINITY,
           repeatType: "reverse",
           ease: "easeInOut",
+          delay: flickerDuration, // Start movement after flickering
         }}
         className="absolute top-0 right-0 w-screen h-screen z-40 pointer-events-none"
       >
