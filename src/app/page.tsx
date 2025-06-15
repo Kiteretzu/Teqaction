@@ -36,6 +36,7 @@ import {
   MobileNavToggle,
   MobileNavMenu,
 } from "./components/ui/Navbar";
+import { LampDemo } from "./components/LampDemo";
 
 export default function Home() {
   const [isHovered, setIsHovered] = useState(false);
@@ -239,17 +240,19 @@ export default function Home() {
 
             {/* Navbar */}
           </div>
+          <Spotlight />
 
-          <div className="flex flex-col items-center text-white justify-center h-full text-center ">
+          {/* Feel like over */}
+          <LampDemo />
+
+          {/* <div className="flex flex-col items-center text-white justify-center h-full text-center ">
             <p className="font-bold text-4xl ">
               Hey We Make Your Dream Come True
             </p>
             <p className="font-bold text-4xl ">
               And Your <Cover>Vision Into Reality</Cover>
             </p>
-          </div>
-          <Spotlight />
-
+          </div> */}
           {/* Hero Section */}
         </div>
       </InteractiveGrid>
