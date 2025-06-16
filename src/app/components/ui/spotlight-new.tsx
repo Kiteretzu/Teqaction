@@ -53,7 +53,7 @@ export const Spotlight = ({
           ease: "easeInOut",
           delay: flickerDuration, // Start movement after flickering
         }}
-        className="absolute top-0 left-0 w-screen h-screen z-40 pointer-events-none"
+        className="absolute top-0 left-0 w-screen h-screen z-0 pointer-events-none"
       >
         <div
           style={{
@@ -98,7 +98,7 @@ export const Spotlight = ({
           ease: "easeInOut",
           delay: flickerDuration, // Start movement after flickering
         }}
-        className="absolute top-0 right-0 w-screen h-screen z-40 pointer-events-none"
+        className="absolute top-0 right-0 w-screen h-screen z-0 pointer-events-none"
       >
         <div
           style={{

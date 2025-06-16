@@ -68,7 +68,7 @@ export default function InteractiveGrid({ children }: InteractiveGridProps) {
       onMouseMove={handleMouseMove}
     >
       {/* Animated SVG Background */}
-      <div className="absolute  inset-0 z-0 pointer-events-none">
+      <div className="absolute  inset-0  pointer-events-none">
         <svg className="w-full h-full" style={{ minHeight: "100vh", minWidth: "100vw" }}>
           <defs>
             <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
