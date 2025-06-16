@@ -256,6 +256,8 @@ export default function Home() {
           {/* Hero Section */}
         </div>
       </InteractiveGrid>
+
+      {/* Second Part */}
       <div className="w-full flex h-screen bg-gradient-to-t from-gray-700 via-gray-900 to-black p-10">
         <div className="w-[30%] h-full flex flex-col gap-3">
           <div className="w-full bg-gray-600 h-[51%] rounded-lg"></div>
@@ -265,6 +267,11 @@ export default function Home() {
           <div className="w-full h-full border-2  rounded-lg"></div>
         </div>
       </div>
+      {/* Third Part */}
+      <div className="w-full h-screen bg-gradient-to-t from-black via-gray-900 to-gray-700">
+
+      </div>
+
     </>
   );
 }
