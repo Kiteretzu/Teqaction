@@ -235,7 +235,7 @@ const Services: React.FC<ServicesProps> = ({ isVisible = false }) => {
             key={activeService}
             className="transform transition-all duration-1000 ease-out"
           >
-            <div className={`bg-gradient-to-br ${currentService.color} rounded-3xl  shadow-2xl`}>
+            <div className={`bg-gradient-to-br bg-gray-900/90  rounded-3xl  shadow-2xl`}>
               <div className="bg-gray-900/95 backdrop-blur-xl rounded-3xl p-12">
                 <div className="flex items-center space-x-8 mb-12">
                   <div 
