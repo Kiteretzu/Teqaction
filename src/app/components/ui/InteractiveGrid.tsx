@@ -64,7 +64,7 @@ export default function InteractiveGrid({ children }: InteractiveGridProps) {
     <>
     <div
       ref={containerRef}
-      className="min-h-screen bg-gradient-to-t from-black via-gray-900 to-black relative overflow-hidden"
+      className="min-h-screen  bg-gradient-to-t from-black via-gray-900 to-black relative overflow-hidden"
       onMouseMove={handleMouseMove}
     >
       {/* Animated SVG Background */}
