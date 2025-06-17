@@ -38,6 +38,7 @@ import {
 } from "./components/ui/Navbar";
 import { LampDemo } from "./components/LampDemo";
 import Services from "./components/ui/Services";
+import { FeaturesSectionDemo } from "./components/ui/ServicesPros";
 
 export default function Home() {
   const [isHovered, setIsHovered] = useState(false);
@@ -210,7 +211,7 @@ export default function Home() {
   return (
     <>
       <InteractiveGrid>
-        <div className="w-screen h-screen flex flex-col justify-between overflow-hidden">
+        <div className="w-screen  flex flex-col justify-between overflow-hidden">
           <div className="fixed w-full">
             <Navbar>
               {/* Desktop Navigation */}
@@ -286,10 +287,10 @@ export default function Home() {
       </InteractiveGrid>
 
       {/* Second Part */}
-      <div className="w-full flex flex-col  text-white justify-center  items-center h-screen bg-gradient-to-t from-gray-700 via-gray-900 to-black ">
+      <div className="w-full flex flex-col  text-white justify-center  items-center  bg-gradient-to-t from-gray-700 via-gray-900 to-black ">
         <div 
           ref={servicesRef}
-          className={`w-full z-1 text-center text-gray-400 font-bold mt-[10rem] mb-[2rem] text-5xl transition-all duration-1000 ease-out ${
+          className={`w-full z-1 text-center text-gray-400 font-bold   text-5xl transition-all duration-1000 ease-out ${
             isServicesVisible 
               ? 'opacity-100 transform translate-y-0' 
               : 'opacity-0 transform translate-y-8'
@@ -301,8 +302,20 @@ export default function Home() {
       
       </div>
       {/* Third Part */}
-      <div className="w-full h-screen bg-gradient-to-t from-black via-gray-900 to-gray-700">
+      <div className="w-full h-screen flex flex-col justify-center items-center bg-gradient-to-t from-black via-gray-900 to-gray-700">
+      
+  <div className="text-center ">
+  <h2 className="text-4xl md:text-5xl font-bold text-white mb-2">
+    Why <span className="text-black">Partner</span> With Us?
+  </h2>
+  <p className="text-lg text-gray-500 max-w-2xl mx-auto">
+    We combine technical excellence with business understanding to deliver results that matter
+  </p>
+</div>
+  
+  <FeaturesSectionDemo />
 
+      
       </div>
 
     </>
