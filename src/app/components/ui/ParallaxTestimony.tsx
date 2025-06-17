@@ -87,7 +87,7 @@ export default function Component() {
   const row3 = testimonials.slice(4, 6)
 
   return (
-    <div className="min-h-screen bg-gradient-to-t from-gray-800 via-black to-black py-16">
+    <div className="min-h-screen bg-gradient-to-t from-gray-900 via-black to-black py-16">
       <div className="max-w-6xl mx-auto px-4 sm:px-5 lg:px-6">
         {/* Header */}
         <motion.div

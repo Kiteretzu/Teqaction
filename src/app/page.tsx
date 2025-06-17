@@ -39,6 +39,7 @@ import { LampDemo } from "./components/LampDemo";
 import Services from "./components/ui/Services";
 import { FeaturesSectionDemo } from "./components/ui/ServicesPros";
 import Component from "./components/ui/ParallaxTestimony";
+import Footer from "./components/ui/Footer";
 
 export default function Home() {
   const [isHovered, setIsHovered] = useState(false);
@@ -323,6 +324,7 @@ export default function Home() {
         <Component/>
 
       </div>
+      <Footer/>
 
     </>
   );
