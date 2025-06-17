@@ -1,6 +1,7 @@
 "use client"
 import { motion } from "framer-motion"
 import { Quote } from "lucide-react"
+import Button from "./Button"
 
 const testimonials = [
   {
@@ -200,9 +201,8 @@ export default function Component() {
           viewport={{ once: true, margin: "-50px" }}
         >
           <p className="text-base text-gray-300 mb-4">Ready to join them?</p>
-          <button className="bg-white hover:bg-gray-100 text-black font-semibold px-6 py-2 rounded-lg transition-colors duration-200 shadow-md hover:shadow-lg text-sm">
-            Get Started Today
-          </button>
+          
+          <Button label=" Get Started Today" link="" position="center" paddingY="py-3" color="secondary" />
         </motion.div>
       </div>
     </div>

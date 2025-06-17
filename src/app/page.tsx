@@ -3,8 +3,7 @@
 import { useState, useEffect, useRef } from "react";
 import Button from "./components/ui/Button";
 import InteractiveGrid from "./components/ui/InteractiveGrid";
-import { FloatingDock } from "./components/ui/InfiniteScrollServices";
-import { Cover } from "./components/ui/TextWrapSpeed/cover";
+import { HandPlatter } from 'lucide-react';
 
 import {
   Code,
@@ -291,13 +290,14 @@ export default function Home() {
       <div className="w-full flex flex-col  text-white justify-center  items-center  bg-gradient-to-t from-black via-gray-900 to-black ">
         <div 
           ref={servicesRef}
-          className={`w-full z-1 text-center text-gray-400 font-bold   text-5xl transition-all duration-1000 ease-out ${
+          className={`w-full z-1 text-center flex items-center justify-center gap-10 text-gray-400 font-bold  mb-2  text-5xl transition-all duration-1000 ease-out ${
             isServicesVisible 
               ? 'opacity-100 transform translate-y-0' 
               : 'opacity-0 transform translate-y-8'
           }`}
         >
-          <p>SERVICES</p>
+          <p>OUR SERVICES </p> 
+          <span><HandPlatter  size={40}/></span>
         </div>
         <div><Services isVisible={isServicesVisible} /></div>
       
