@@ -39,6 +39,7 @@ import {
 import { LampDemo } from "./components/LampDemo";
 import Services from "./components/ui/Services";
 import { FeaturesSectionDemo } from "./components/ui/ServicesPros";
+import Component from "./components/ui/ParallaxTestimony";
 
 export default function Home() {
   const [isHovered, setIsHovered] = useState(false);
@@ -287,7 +288,7 @@ export default function Home() {
       </InteractiveGrid>
 
       {/* Second Part */}
-      <div className="w-full flex flex-col  text-white justify-center  items-center  bg-gradient-to-t from-gray-700 via-gray-900 to-black ">
+      <div className="w-full flex flex-col  text-white justify-center  items-center  bg-gradient-to-t from-black via-gray-900 to-black ">
         <div 
           ref={servicesRef}
           className={`w-full z-1 text-center text-gray-400 font-bold   text-5xl transition-all duration-1000 ease-out ${
@@ -302,11 +303,11 @@ export default function Home() {
       
       </div>
       {/* Third Part */}
-      <div className="w-full h-screen flex flex-col justify-center items-center bg-gradient-to-t from-black via-gray-900 to-gray-700">
+      <div className="w-full h-screen flex flex-col justify-center items-center bg-gradient-to-t from-black via-gray-900 to-black">
       
   <div className="text-center ">
   <h2 className="text-4xl md:text-5xl font-bold text-white mb-2">
-    Why <span className="text-black">Partner</span> With Us?
+    Why <span className="text-gray-600">Partner</span> With Us?
   </h2>
   <p className="text-lg text-gray-500 max-w-2xl mx-auto">
     We combine technical excellence with business understanding to deliver results that matter
@@ -314,8 +315,13 @@ export default function Home() {
 </div>
   
   <FeaturesSectionDemo />
+  
 
       
+      </div>
+      <div>
+        <Component/>
+
       </div>
 
     </>
