@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import Button from "./components/ui/Button";
 import InteractiveGrid from "./components/ui/InteractiveGrid";
 import { FloatingDock } from "./components/ui/InfiniteScrollServices";
@@ -37,9 +37,37 @@ import {
   MobileNavMenu,
 } from "./components/ui/Navbar";
 import { LampDemo } from "./components/LampDemo";
+import Services from "./components/ui/Services";
 
 export default function Home() {
   const [isHovered, setIsHovered] = useState(false);
+  const [isServicesVisible, setIsServicesVisible] = useState(false);
+  const servicesRef = useRef(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsServicesVisible(true);
+        }
+      },
+      {
+        threshold: 0.3, // Trigger when 30% of the element is visible
+        rootMargin: '-50px 0px', // Trigger slightly before the element comes into view
+      }
+    );
+
+    if (servicesRef.current) {
+      observer.observe(servicesRef.current);
+    }
+
+    return () => {
+      if (servicesRef.current) {
+        observer.unobserve(servicesRef.current);
+      }
+    };
+  }, []);
+
   const navItems = [
     {
       name: "Features",
@@ -190,7 +218,7 @@ export default function Home() {
                 <NavbarLogo />
                 <NavItems items={navItems} />
                 <div className="flex items-center gap-4">
-                  <Button label="Book Now" link="/home" position="right" />
+                  <Button label="Book Now" link="/home" position="right" paddingX='px-3' paddingY="py-2" />
                 </div>
               </NavBody>
 
@@ -258,14 +286,19 @@ export default function Home() {
       </InteractiveGrid>
 
       {/* Second Part */}
-      <div className="w-full flex h-screen bg-gradient-to-t from-gray-700 via-gray-900 to-black p-10">
-        <div className="w-[30%] h-full flex flex-col gap-3">
-          <div className="w-full bg-gray-600 h-[51%] rounded-lg"></div>
-          <div className="w-full bg-gray-600 h-[51%] rounded lg"></div>
+      <div className="w-full flex flex-col  text-white justify-center  items-center h-screen bg-gradient-to-t from-gray-700 via-gray-900 to-black ">
+        <div 
+          ref={servicesRef}
+          className={`w-full z-1 text-center text-gray-400 font-bold mt-[10rem] mb-[2rem] text-5xl transition-all duration-1000 ease-out ${
+            isServicesVisible 
+              ? 'opacity-100 transform translate-y-0' 
+              : 'opacity-0 transform translate-y-8'
+          }`}
+        >
+          <p>SERVICES</p>
         </div>
-        <div className="w-[70%] h-full bg-gray-600 rounded-lg p-3 ml-3">
-          <div className="w-full h-full border-2  rounded-lg"></div>
-        </div>
+        <div><Services isVisible={isServicesVisible} /></div>
+      
       </div>
       {/* Third Part */}
       <div className="w-full h-screen bg-gradient-to-t from-black via-gray-900 to-gray-700">

@@ -4,13 +4,28 @@ import React, { useState } from 'react';
 import { ArrowUpRight } from 'lucide-react';
 import Link from 'next/link';
 
+type ButtonPosition = 'left' | 'center' | 'right';
+type ButtonColor = 'primary' | 'secondary' | 'custom';
+
 interface ButtonProps {
   label: string;
   link: string;
-  position?: 'left' | 'center' | 'right';
+  position?: ButtonPosition;
+  paddingX?: string;
+  paddingY?: string;
+  color?: ButtonColor;
+  customColor?: string;
 }
 
-const Button: React.FC<ButtonProps> = ({ label, link, position = 'left' }) => {
+const Button: React.FC<ButtonProps> = ({ 
+  label, 
+  link, 
+  position = 'left', 
+  paddingX = 'px-4', 
+  paddingY = 'py-0',
+  color = 'primary',
+  customColor = 'bg-gray-900'
+}) => {
   const [isHovered, setIsHovered] = useState(false);
 
   const positionClass = {
@@ -19,13 +34,19 @@ const Button: React.FC<ButtonProps> = ({ label, link, position = 'left' }) => {
     right: 'justify-end',
   }[position];
 
+  const colorClass = {
+    primary: 'bg-gray-900',
+    secondary: 'bg-blue-600',
+    custom: customColor
+  }[color];
+
   return (
-    <div className={`flex ${positionClass} m-5 z-10 `}>
+    <div className={`flex ${positionClass} m-5 z-10`}>
       <Link href={link} className="flex group">
         <div
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
-          className={`h-[2.3rem] px-4 text-white rounded-l-full bg-gray-900 flex items-center transition-all duration-300 ease-in-out ${
+          className={`${paddingY} ${paddingX} text-white rounded-l-full ${colorClass} flex items-center transition-all duration-300 ease-in-out ${
             isHovered ? 'rounded-full' : ''
           }`}
         >
@@ -34,7 +55,7 @@ const Button: React.FC<ButtonProps> = ({ label, link, position = 'left' }) => {
         <div
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
-          className={`w-[2.3rem] h-[2.3rem] rounded-r-full flex items-center justify-center bg-gray-900 transition-all duration-300 ease-in-out ${
+          className={`${paddingY} ${paddingX} rounded-r-full flex items-center justify-center ${colorClass} transition-all duration-300 ease-in-out ${
             isHovered ? 'rounded-full' : ''
           }`}
         >
