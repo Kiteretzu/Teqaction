@@ -231,6 +231,7 @@ const Services: React.FC<ServicesProps> = ({ isVisible = false }) => {
           {/* Animated Content Block */}
           <div
           
+          
             key={activeService}
             className="transform transition-all duration-1000 ease-out"
           >
