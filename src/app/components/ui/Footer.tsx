@@ -75,7 +75,7 @@ const Footer: React.FC = () => {
                 {['About', 'Features', 'Pricing & Plans', 'Contact'].map((item, index) => (
                   <li key={item}>
                     <a 
-                      href="#" 
+                      href={`#${item.toLowerCase()}`} 
                       className={`text-gray-400 hover:text-white transition-all duration-300 hover:translate-x-1 block transform ${
                         isVisible ? 'translate-x-0 opacity-100' : '-translate-x-4 opacity-0'
                       }`}
@@ -95,7 +95,7 @@ const Footer: React.FC = () => {
                 {['Account', 'Tools', 'Newsletter', 'FAQ'].map((item, index) => (
                   <li key={item}>
                     <a 
-                      href="#" 
+                      href={`#${item.toLowerCase()}`}
                       className={`text-gray-400 hover:text-white transition-all duration-300 hover:translate-x-1 block transform ${
                         isVisible ? 'translate-x-0 opacity-100' : '-translate-x-4 opacity-0'
                       }`}
@@ -115,7 +115,7 @@ const Footer: React.FC = () => {
                 {['Guides', 'Terms & Conditions', 'Privacy Policy', 'Licensing'].map((item, index) => (
                   <li key={item}>
                     <a 
-                      href="#" 
+                      href={`#${item.toLowerCase()}`}
                       className={`text-gray-400 hover:text-white transition-all duration-300 hover:translate-x-1 block transform ${
                         isVisible ? 'translate-x-0 opacity-100' : '-translate-x-4 opacity-0'
                       }`}

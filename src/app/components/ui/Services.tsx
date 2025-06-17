@@ -202,9 +202,9 @@ const Services: React.FC<ServicesProps> = ({ isVisible = false }) => {
       </nav>
 
       {/* Content Area - Slower slide from right */}
-      <div className="max-w-7xl mx-auto px-6 py-12">
+      <div className="max-w-7xl mx-auto px-6 py-12 ">
         <div 
-          className={`relative overflow-hidden transition-all duration-700 ease-out ${
+          className={`relative overflow-hidden border-1 border-zinc-600  rounded-4xl transition-all duration-700 ease-out ${
             isContentVisible 
               ? 'translate-x-0 opacity-100' 
               : 'translate-x-full opacity-0'

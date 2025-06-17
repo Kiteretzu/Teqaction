@@ -71,13 +71,17 @@ export default function Home() {
   }, []);
 
   const navItems = [
-    {
-      name: "Features",
-      link: "#features",
+     {
+      name: "About",
+      link: "#about",
     },
     {
-      name: "Pricing",
-      link: "#pricing",
+      name: "Services",
+      link: "#services",
+    },
+    {
+      name: "Testimonials",
+      link: "#testimonials",
     },
     {
       name: "Contact",
@@ -212,7 +216,7 @@ export default function Home() {
   return (
     <>
       <InteractiveGrid>
-        <div className="w-screen  flex flex-col justify-between overflow-hidden">
+        <div id="about" className="w-screen  flex flex-col justify-between overflow-hidden">
           <div className="fixed w-full">
             <Navbar>
               {/* Desktop Navigation */}
@@ -220,7 +224,7 @@ export default function Home() {
                 <NavbarLogo />
                 <NavItems items={navItems} />
                 <div className="flex items-center gap-4">
-                  <Button label="Book Now" link="/home" position="right" paddingX='px-3' paddingY="py-2" />
+                  <Button label="Book Now" link="" position="right" paddingX='px-3' paddingY="py-2" />
                 </div>
               </NavBody>
 
@@ -300,7 +304,7 @@ export default function Home() {
           <p>OUR SERVICES </p> 
           <span><HandPlatter  size={40}/></span>
         </div>
-        <div><Services isVisible={isServicesVisible} /></div>
+        <div  id="services"><Services isVisible={isServicesVisible} /></div>
       
       </div>
       {/* Third Part */}
@@ -315,16 +319,20 @@ export default function Home() {
   </p>
 </div>
   
+  <div id="features">
   <FeaturesSectionDemo />
+  </div>
   
 
       
       </div>
-      <div>
+      <div id="testimonials">
         <Component/>
 
       </div>
-      <Footer/>
+      <div id="contact">
+        <Footer/></div>
+      
 
     </>
   );
