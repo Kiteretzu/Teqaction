@@ -1,6 +1,7 @@
 "use client"
 import { motion } from "framer-motion"
 import { Quote } from "lucide-react"
+import Button from "./Button"
 
 const testimonials = [
   {
@@ -86,7 +87,7 @@ export default function Component() {
   const row3 = testimonials.slice(4, 6)
 
   return (
-    <div className="min-h-screen bg-gradient-to-t from-gray-800 via-black to-black py-16">
+    <div className="min-h-screen bg-gradient-to-t from-gray-950 via-black to-black py-16">
       <div className="max-w-6xl mx-auto px-4 sm:px-5 lg:px-6">
         {/* Header */}
         <motion.div
@@ -187,8 +188,8 @@ export default function Component() {
           </motion.div>
 
           {/* Gradient overlays for smooth edges */}
-          <div className="absolute inset-y-0 left-0 w-24 bg-gradient-to-r from-gray-950 to-transparent pointer-events-none z-10" />
-          <div className="absolute inset-y-0 right-0 w-24 bg-gradient-to-l from-gray-900  to-transparent pointer-events-none z-10" />
+          <div className="absolute inset-y-0 left-0 w-24 bg-gradient-to-r from-black to-transparent pointer-events-none z-10" />
+          <div className="absolute inset-y-0 right-0 w-24 bg-gradient-to-l from-black  to-transparent pointer-events-none z-10" />
         </motion.div>
 
         {/* Call to action */}
@@ -200,9 +201,8 @@ export default function Component() {
           viewport={{ once: true, margin: "-50px" }}
         >
           <p className="text-base text-gray-300 mb-4">Ready to join them?</p>
-          <button className="bg-white hover:bg-gray-100 text-black font-semibold px-6 py-2 rounded-lg transition-colors duration-200 shadow-md hover:shadow-lg text-sm">
-            Get Started Today
-          </button>
+          
+          <Button label=" Get Started Today" link="" position="center" paddingY="py-3" color="secondary" />
         </motion.div>
       </div>
     </div>

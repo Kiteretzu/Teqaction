@@ -3,8 +3,7 @@
 import { useState, useEffect, useRef } from "react";
 import Button from "./components/ui/Button";
 import InteractiveGrid from "./components/ui/InteractiveGrid";
-import { FloatingDock } from "./components/ui/InfiniteScrollServices";
-import { Cover } from "./components/ui/TextWrapSpeed/cover";
+import { HandPlatter } from 'lucide-react';
 
 import {
   Code,
@@ -40,6 +39,7 @@ import { LampDemo } from "./components/LampDemo";
 import Services from "./components/ui/Services";
 import { FeaturesSectionDemo } from "./components/ui/ServicesPros";
 import Component from "./components/ui/ParallaxTestimony";
+import Footer from "./components/ui/Footer";
 
 export default function Home() {
   const [isHovered, setIsHovered] = useState(false);
@@ -71,13 +71,17 @@ export default function Home() {
   }, []);
 
   const navItems = [
-    {
-      name: "Features",
-      link: "#features",
+     {
+      name: "About",
+      link: "#about",
     },
     {
-      name: "Pricing",
-      link: "#pricing",
+      name: "Services",
+      link: "#services",
+    },
+    {
+      name: "Testimonials",
+      link: "#testimonials",
     },
     {
       name: "Contact",
@@ -212,7 +216,7 @@ export default function Home() {
   return (
     <>
       <InteractiveGrid>
-        <div className="w-screen  flex flex-col justify-between overflow-hidden">
+        <div id="about" className="w-screen  flex flex-col justify-between overflow-hidden">
           <div className="fixed w-full">
             <Navbar>
               {/* Desktop Navigation */}
@@ -220,7 +224,7 @@ export default function Home() {
                 <NavbarLogo />
                 <NavItems items={navItems} />
                 <div className="flex items-center gap-4">
-                  <Button label="Book Now" link="/home" position="right" paddingX='px-3' paddingY="py-2" />
+                  <Button label="Book Now" link="" position="right" paddingX='px-3' paddingY="py-2" />
                 </div>
               </NavBody>
 
@@ -291,15 +295,16 @@ export default function Home() {
       <div className="w-full flex flex-col  text-white justify-center  items-center  bg-gradient-to-t from-black via-gray-900 to-black ">
         <div 
           ref={servicesRef}
-          className={`w-full z-1 text-center text-gray-400 font-bold   text-5xl transition-all duration-1000 ease-out ${
+          className={`w-full z-1 text-center flex items-center justify-center gap-10 text-gray-400 font-bold  mb-2  text-5xl transition-all duration-1000 ease-out ${
             isServicesVisible 
               ? 'opacity-100 transform translate-y-0' 
               : 'opacity-0 transform translate-y-8'
           }`}
         >
-          <p>SERVICES</p>
+          <p>OUR SERVICES </p> 
+          <span><HandPlatter  size={40}/></span>
         </div>
-        <div><Services isVisible={isServicesVisible} /></div>
+        <div  id="services"><Services isVisible={isServicesVisible} /></div>
       
       </div>
       {/* Third Part */}
@@ -314,15 +319,20 @@ export default function Home() {
   </p>
 </div>
   
+  <div id="features">
   <FeaturesSectionDemo />
+  </div>
   
 
       
       </div>
-      <div>
+      <div id="testimonials">
         <Component/>
 
       </div>
+      <div id="contact">
+        <Footer/></div>
+      
 
     </>
   );
