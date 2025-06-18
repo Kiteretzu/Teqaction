@@ -52,7 +52,7 @@ export default function Home() {
   useEffect(() => {
     const checkMobile = () => {
       setIsMobile(window.innerWidth <= 768);
-    };
+    }; 
     
     checkMobile();
     window.addEventListener('resize', checkMobile);
