@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import Button from "./components/ui/Button";
 import InteractiveGrid from "./components/ui/InteractiveGrid";
 import { HandPlatter } from 'lucide-react';
@@ -44,8 +44,22 @@ import Footer from "./components/ui/Footer";
 export default function Home() {
   const [isHovered, setIsHovered] = useState(false);
   const [isServicesVisible, setIsServicesVisible] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
   const servicesRef = useRef(null);
 
+  // Optimized mobile detection
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  // Optimized intersection observer with better mobile thresholds
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -54,8 +68,8 @@ export default function Home() {
         }
       },
       {
-        threshold: 0.3, // Trigger when 30% of the element is visible
-        rootMargin: '-50px 0px', // Trigger slightly before the element comes into view
+        threshold: isMobile ? 0.1 : 0.3, // Lower threshold for mobile
+        rootMargin: isMobile ? '-20px 0px' : '-50px 0px', // Smaller margin for mobile
       }
     );
 
@@ -68,10 +82,28 @@ export default function Home() {
         observer.unobserve(servicesRef.current);
       }
     };
+  }, [isMobile]);
+
+  // Prevent body scroll when mobile menu is open
+  useEffect(() => {
+    if (isMobileMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+    
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, [isMobileMenuOpen]);
+
+  // Optimized mobile menu close handler
+  const handleMobileMenuClose = useCallback(() => {
+    setIsMobileMenuOpen(false);
   }, []);
 
   const navItems = [
-     {
+    {
       name: "About",
       link: "#about",
     },
@@ -88,6 +120,7 @@ export default function Home() {
       link: "#contact",
     },
   ];
+
   const allServices = [
     {
       title: "Web Development",
@@ -210,21 +243,27 @@ export default function Home() {
       description: "Tailored software solutions",
     },
   ];
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const words = `Oxygen gets you high. In a catastrophic emergency, we're taking giant, panicked breaths. Suddenly you become euphoric, docile. You accept your fate. It's all right here. Emergency water landing, six hundred miles an hour. Blank faces, calm as Hindu cows
-`;
+
   return (
     <>
+      {/* Hero Section with Mobile Optimizations */}
       <InteractiveGrid>
-        <div id="about" className="w-screen  flex flex-col justify-between overflow-hidden">
-          <div className="fixed w-full">
+        <div id="about" className="w-screen min-h-screen flex flex-col justify-between overflow-hidden">
+          {/* Fixed Navbar with Mobile-First Design */}
+          <div className="fixed w-full z-50 bg-black/80 backdrop-blur-sm md:bg-transparent md:backdrop-blur-none">
             <Navbar>
               {/* Desktop Navigation */}
               <NavBody>
                 <NavbarLogo />
                 <NavItems items={navItems} />
-                <div className="flex items-center gap-4">
-                  <Button label="Book Now" link="" position="right" paddingX='px-3' paddingY="py-2" />
+                <div className="hidden md:flex items-center gap-4">
+                  <Button 
+                    label="Book Now" 
+                    link="" 
+                    position="right" 
+                    paddingX='px-4' 
+                    paddingY="py-2" 
+                  />
                 </div>
               </NavBody>
 
@@ -240,30 +279,30 @@ export default function Home() {
 
                 <MobileNavMenu
                   isOpen={isMobileMenuOpen}
-                  onClose={() => setIsMobileMenuOpen(false)}
+                  onClose={handleMobileMenuClose}
                 >
                   {navItems.map((item, idx) => (
                     <a
                       key={`mobile-link-${idx}`}
                       href={item.link}
-                      onClick={() => setIsMobileMenuOpen(false)}
-                      className="relative text-neutral-600 dark:text-neutral-300"
+                      onClick={handleMobileMenuClose}
+                      className="relative text-neutral-600 dark:text-neutral-300 py-3 px-4 text-lg font-medium hover:text-white transition-colors"
                     >
                       <span className="block">{item.name}</span>
                     </a>
                   ))}
-                  <div className="flex w-full flex-col gap-4">
+                  <div className="flex w-full flex-col gap-4 mt-6 px-4">
                     <NavbarButton
-                      onClick={() => setIsMobileMenuOpen(false)}
+                      onClick={handleMobileMenuClose}
                       variant="primary"
-                      className="w-full"
+                      className="w-full py-3 text-lg font-semibold"
                     >
                       Login
                     </NavbarButton>
                     <NavbarButton
-                      onClick={() => setIsMobileMenuOpen(false)}
+                      onClick={handleMobileMenuClose}
                       variant="primary"
-                      className="w-full"
+                      className="w-full py-3 text-lg font-semibold"
                     >
                       Book a call
                     </NavbarButton>
@@ -271,69 +310,59 @@ export default function Home() {
                 </MobileNavMenu>
               </MobileNav>
             </Navbar>
-
-            {/* Navbar */}
           </div>
-          <Spotlight />
 
-          {/* Feel like over */}
-          <LampDemo />
-
-          {/* <div className="flex flex-col items-center text-white justify-center h-full text-center ">
-            <p className="font-bold text-4xl ">
-              Hey We Make Your Dream Come True
-            </p>
-            <p className="font-bold text-4xl ">
-              And Your <Cover>Vision Into Reality</Cover>
-            </p>
-          </div> */}
-          {/* Hero Section */}
+          {/* Hero Content */}
+          <div className="flex-1 flex items-center justify-center pt-16 md:pt-0">
+            <Spotlight />
+            <LampDemo />
+          </div>
         </div>
       </InteractiveGrid>
 
-      {/* Second Part */}
-      <div className="w-full flex flex-col  text-white justify-center  items-center  bg-gradient-to-t from-black via-gray-900 to-black ">
+      {/* Services Section - Mobile Optimized */}
+      <div className="w-full flex flex-col text-white justify-center items-center bg-gradient-to-t from-black via-gray-900 to-black px-4 md:px-8 py-12 md:py-20">
         <div 
           ref={servicesRef}
-          className={`w-full z-1 text-center flex items-center justify-center gap-10 text-gray-400 font-bold  mb-2  text-5xl transition-all duration-1000 ease-out ${
+          className={`w-full z-1  text-center flex flex-col md:flex-row items-center justify-center gap-4 md:gap-10 text-gray-400 font-bold mb-8 md:mb-12 text-3xl md:text-5xl transition-all duration-1000 ease-out ${
             isServicesVisible 
               ? 'opacity-100 transform translate-y-0' 
               : 'opacity-0 transform translate-y-8'
           }`}
         >
-          <p>OUR SERVICES </p> 
-          <span><HandPlatter  size={40}/></span>
+          <p className="text-center">OUR SERVICES</p> 
+          <span><HandPlatter size={isMobile ? 32 : 40}/></span>
         </div>
-        <div  id="services"><Services isVisible={isServicesVisible} /></div>
-      
+        <div id="services" className="w-full">
+          <Services isVisible={isServicesVisible} />
+        </div>
       </div>
-      {/* Third Part */}
-      <div className="w-full h-screen flex flex-col justify-center items-center bg-gradient-to-t from-black via-gray-900 to-black">
-      
-  <div className="text-center ">
-  <h2 className="text-4xl md:text-5xl font-bold text-white mb-2">
-    Why <span className="text-gray-600">Partner</span> With Us?
-  </h2>
-  <p className="text-lg text-gray-500 max-w-2xl mx-auto">
-    We combine technical excellence with business understanding to deliver results that matter
-  </p>
-</div>
-  
-  <div id="features">
-  <FeaturesSectionDemo />
-  </div>
-  
 
-      
+      {/* Features Section - Mobile Optimized */}
+      <div className="w-full min-h-screen flex flex-col justify-center items-center bg-gradient-to-t from-black via-gray-900 to-black px-4 md:px-8 py-12 md:py-20">
+        <div className="text-center mb-12 md:mb-16">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4 leading-tight">
+            Why <span className="text-gray-600">Partner</span> With Us?
+          </h2>
+          <p className="text-base md:text-lg text-gray-500 max-w-2xl mx-auto leading-relaxed px-4">
+            We combine technical excellence with business understanding to deliver results that matter
+          </p>
+        </div>
+        
+        <div id="features" className="w-full">
+          <FeaturesSectionDemo />
+        </div>
       </div>
-      <div id="testimonials">
-        <Component/>
 
+      {/* Testimonials Section */}
+      <div id="testimonials" className="w-full">
+        <Component />
       </div>
-      <div id="contact">
-        <Footer/></div>
-      
 
+      {/* Contact/Footer Section */}
+      <div id="contact" className="w-full">
+        <Footer />
+      </div>
     </>
   );
 }
