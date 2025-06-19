@@ -35,4 +35,4 @@ jobs:
             docker stop teqaction-fe || true
             docker rm teqaction-fe || true
             docker run -d --name teqaction-fe -p 3000:3000 ${{secrets.DOCKER_USERNAME}}/teqaction-fe:${{github.sha}}
- 
+  
