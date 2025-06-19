@@ -21,79 +21,22 @@ import InteractiveGrid from "../components/ui/InteractiveGrid";
 import Services from "../components/ui/Services";
 import { Spotlight } from "../components/ui/spotlight-new";
 import Component from "../components/ui/ParallaxTestimony";
+import NavBarComponet from "../components/global/NavBarComponet";
+import HeroSection from "../components/global/HeroSection";
+import { StickyScrollRevealDemo } from "../components/global/WhyChooseUs";
 
 export default function HomePage() {
   return (
     <InteractiveGrid>
       {/* Header */}
-      <header className="border-b border-gray-800/50 bg-black/20 backdrop-blur-sm sticky top-0 z-50">
-        <div className="container mx-auto px-4 py-4 flex items-center justify-between">
-          <div className="flex items-center space-x-2">
-            <div className="w-8 h-8 bg-gradient-to-r from-blue-500 to-green-500 rounded-lg flex items-center justify-center">
-              <Code className="w-5 h-5 text-white" />
-            </div>
-            <span className="text-xl font-bold text-white">TechAction</span>
+       <div className=" w-full z-50 fixed bg-black/80 backdrop-blur-sm md:bg-transparent md:backdrop-blur-none">
+            <NavBarComponet/>
           </div>
-          <nav className="hidden md:flex items-center space-x-8">
-            <Link
-              href="#services"
-              className="text-gray-300 hover:text-white transition-colors"
-            >
-              Services
-            </Link>
-            <Link
-              href="#about"
-              className="text-gray-300 hover:text-white transition-colors"
-            >
-              About
-            </Link>
-            <Link
-              href="#contact"
-              className="text-gray-300 hover:text-white transition-colors"
-            >
-              Contact
-            </Link>
-          </nav>
-          <Button className="bg-gradient-to-r from-blue-500 to-green-500 hover:from-blue-600 hover:to-green-600 text-white border-0">
-            Get Started
-          </Button>
-        </div>
-      </header>
+      
 
       {/* Hero Section */}
-      <section className="py-20 px-4">
-        <Spotlight />
-        <div className="container mx-auto text-center max-w-4xl">
-          <h1 className="text-5xl md:text-6xl font-bold text-white mb-6 leading-tight">
-            Grow Your Business with
-            <span className="bg-gradient-to-r from-blue-400 to-green-400 bg-clip-text text-transparent">
-              {" "}
-              Digital Solutions
-            </span>
-          </h1>
-          <p className="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
-            We help businesses scale through cutting-edge websites and mobile
-            applications. Transform your ideas into powerful digital experiences
-            that drive growth.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button
-              size="lg"
-              className="text-lg px-8 py-3 bg-gradient-to-r from-blue-500 to-green-500 hover:from-blue-600 hover:to-green-600 text-white border-0"
-            >
-              Start Your Project
-              <ArrowRight className="ml-2 w-5 h-5" />
-            </Button>
-            <Button
-              variant="outline"
-              size="lg"
-              className="text-lg px-8 py-3 border-gray-600 text-gray-300 hover:bg-gray-800 hover:text-white"
-            >
-              View Our Work
-            </Button>
-          </div>
-        </div>
-      </section>
+      <HeroSection/>
+      <Spotlight/>
 
       {/* Services Section */}
       <section id="services" className="py-20 px-4">
@@ -183,106 +126,8 @@ export default function HomePage() {
       </section>
 
       {/* Why Choose Us Section */}
-      <section className="py-20 px-4">
-        <div className="container mx-auto">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div>
-              <h2 className="text-4xl font-bold text-white mb-6">
-                Why Choose TechAction?
-              </h2>
-              <p className="text-lg text-gray-300 mb-8">
-                We combine technical expertise with business acumen to deliver
-                solutions that not only work beautifully but drive real results
-                for your business.
-              </p>
-
-              <div className="space-y-4">
-                <div className="flex items-start space-x-3">
-                  <CheckCircle className="w-6 h-6 text-green-400 mt-1 flex-shrink-0" />
-                  <div>
-                    <h3 className="font-semibold text-white">
-                      Full-Stack Expertise
-                    </h3>
-                    <p className="text-gray-300">
-                      End-to-end development from frontend to backend and
-                      deployment
-                    </p>
-                  </div>
-                </div>
-
-                <div className="flex items-start space-x-3">
-                  <CheckCircle className="w-6 h-6 text-green-400 mt-1 flex-shrink-0" />
-                  <div>
-                    <h3 className="font-semibold text-white">
-                      Business-Focused Solutions
-                    </h3>
-                    <p className="text-gray-300">
-                      Technology that drives growth and solves real business
-                      problems
-                    </p>
-                  </div>
-                </div>
-
-                <div className="flex items-start space-x-3">
-                  <CheckCircle className="w-6 h-6 text-green-400 mt-1 flex-shrink-0" />
-                  <div>
-                    <h3 className="font-semibold text-white">
-                      Modern Tech Stack
-                    </h3>
-                    <p className="text-gray-300">
-                      Latest technologies and best practices for scalable
-                      solutions
-                    </p>
-                  </div>
-                </div>
-
-                <div className="flex items-start space-x-3">
-                  <CheckCircle className="w-6 h-6 text-green-400 mt-1 flex-shrink-0" />
-                  <div>
-                    <h3 className="font-semibold text-white">
-                      Ongoing Support
-                    </h3>
-                    <p className="text-gray-300">
-                      Continuous maintenance and optimization for long-term
-                      success
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div className="relative">
-              <div className="bg-gradient-to-r from-blue-500/20 to-green-500/20 backdrop-blur-sm border border-gray-700 rounded-2xl p-8 text-white">
-                <div className="grid grid-cols-2 gap-6">
-                  <div className="text-center">
-                    <div className="text-3xl font-bold mb-2 text-blue-400">
-                      50+
-                    </div>
-                    <div className="text-gray-300">Projects Delivered</div>
-                  </div>
-                  <div className="text-center">
-                    <div className="text-3xl font-bold mb-2 text-green-400">
-                      98%
-                    </div>
-                    <div className="text-gray-300">Client Satisfaction</div>
-                  </div>
-                  <div className="text-center">
-                    <div className="text-3xl font-bold mb-2 text-purple-400">
-                      24/7
-                    </div>
-                    <div className="text-gray-300">Support Available</div>
-                  </div>
-                  <div className="text-center">
-                    <div className="text-3xl font-bold mb-2 text-orange-400">
-                      5+
-                    </div>
-                    <div className="text-gray-300">Years Experience</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+      <section className="no-scrollbar">
+        <StickyScrollRevealDemo />
       </section>
 
       {/* CTA Section */}
