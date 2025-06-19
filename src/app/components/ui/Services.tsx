@@ -202,10 +202,10 @@ const Services: React.FC<ServicesProps> = ({ isVisible = false }) => {
   }, [isAutoPlaying]);
 
   return (
-    <div className="min-h-screen bg-black text-white overflow-hidden">
+    <div className="min-h-screen  text-white overflow-hidden">
       {/* Mobile-First Navigation Bar */}
       <nav
-        className={`backdrop-blur-2xl bg-black/20 border-b border-white/5 sticky top-0  transition-all duration-700 ease-out ${
+        className={`backdrop-blur-2xl   sticky top-0  transition-all duration-700 ease-out ${
           isNavbarVisible
             ? "translate-x-0 opacity-100"
             : "-translate-x-full opacity-0"
@@ -284,7 +284,7 @@ const Services: React.FC<ServicesProps> = ({ isVisible = false }) => {
 
       {/* Content Area - Mobile optimized */}
       <div
-        className="max-w-7xl mx-auto px-3 md:px-6 bg-gradient-to-t from-black to-gray-950/80 py-6 md:py-12"
+        className="max-w-7xl mx-auto px-3 md:px-6  py-6 md:py-12"
         onTouchStart={handleTouchStart}
         onTouchEnd={handleTouchEnd}
       >

@@ -134,7 +134,7 @@ export const NavBody = ({ children, className, visible, isAtTop }: NavBodyProps 
         minWidth: "800px",
       }}
       className={cn(
-        "relative z-[60] mx-auto hidden w-full max-w-7xl flex-row items-center justify-between self-start rounded-full bg-transparent px-4 py-2 lg:flex",
+        "relative z-[60] mx-auto hidden w-full  max-w-7xl flex-row items-center justify-between self-start rounded-full bg-transparent px-4 py-2 lg:flex",
         visible && !isAtTop && "bg-gray-800/90 border border-gray-700/50",
         className,
       )}
@@ -270,7 +270,7 @@ export const NavbarLogo = () => {
   return (
     <a href="#" className="relative z-20 mr-4 flex items-center space-x-2 px-2 py-1 text-sm font-normal">
       <img src="https://assets.aceternity.com/logo-dark.png" alt="logo" width={30} height={30} />
-      <span className="font-medium text-white">Startup</span>
+      <span className="font-medium text-white">Teqaction</span>
     </a>
   )
 }

@@ -40,6 +40,7 @@ import Services from "./components/ui/Services";
 import { FeaturesSectionDemo } from "./components/ui/ServicesPros";
 import Component from "./components/ui/ParallaxTestimony";
 import Footer from "./components/ui/Footer";
+import NavBarComponet from "./components/global/NavBarComponet";
 
 export default function Home() {
   const [isHovered, setIsHovered] = useState(false);
@@ -251,65 +252,7 @@ export default function Home() {
         <div id="about" className="w-screen min-h-screen flex flex-col justify-between overflow-hidden">
           {/* Fixed Navbar with Mobile-First Design */}
           <div className="fixed w-full z-50 bg-black/80 backdrop-blur-sm md:bg-transparent md:backdrop-blur-none">
-            <Navbar>
-              {/* Desktop Navigation */}
-              <NavBody>
-                <NavbarLogo />
-                <NavItems items={navItems} />
-                <div className="hidden md:flex items-center gap-4">
-                  <Button 
-                    label="Book Now" 
-                    link="" 
-                    position="right" 
-                    paddingX='px-4' 
-                    paddingY="py-2" 
-                  />
-                </div>
-              </NavBody>
-
-              {/* Mobile Navigation */}
-              <MobileNav>
-                <MobileNavHeader>
-                  <NavbarLogo />
-                  <MobileNavToggle
-                    isOpen={isMobileMenuOpen}
-                    onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                  />
-                </MobileNavHeader>
-
-                <MobileNavMenu
-                  isOpen={isMobileMenuOpen}
-                  onClose={handleMobileMenuClose}
-                >
-                  {navItems.map((item, idx) => (
-                    <a
-                      key={`mobile-link-${idx}`}
-                      href={item.link}
-                      onClick={handleMobileMenuClose}
-                      className="relative text-neutral-600 dark:text-neutral-300 py-3 px-4 text-lg font-medium hover:text-white transition-colors"
-                    >
-                      <span className="block">{item.name}</span>
-                    </a>
-                  ))}
-                  <div className="flex w-full flex-col gap-4 mt-6 px-4">
-                    <NavbarButton
-                      onClick={handleMobileMenuClose}
-                      variant="primary"
-                      className="w-full py-3 text-lg font-semibold"
-                    >
-                      Login
-                    </NavbarButton>
-                    <NavbarButton
-                      onClick={handleMobileMenuClose}
-                      variant="primary"
-                      className="w-full py-3 text-lg font-semibold"
-                    >
-                      Book a call
-                    </NavbarButton>
-                  </div>
-                </MobileNavMenu>
-              </MobileNav>
-            </Navbar>
+            <NavBarComponet/>
           </div>
 
           {/* Hero Content */}
