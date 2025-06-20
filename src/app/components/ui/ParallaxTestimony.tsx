@@ -7,55 +7,55 @@ const testimonials = [
   {
     id: 1,
     name: "Sarah Chen",
-    role: "Senior Developer",
-    company: "TechCorp",
+    role: "CTO",
+    company: "MobileFirst Inc.",
     content:
-      "This platform has completely transformed how we handle our database operations. The intuitive interface and powerful features have saved us countless hours.",
+      "Their React Native team delivered our cross-platform app 40% faster than estimated. The performance is indistinguishable from native!",
     initials: "SC",
   },
   {
     id: 2,
     name: "Marcus Rodriguez",
-    role: "CTO",
-    company: "StartupXYZ",
+    role: "Product Manager",
+    company: "Global Retail",
     content:
-      "The performance improvements we've seen are incredible. Our queries run 10x faster and the developer experience is unmatched.",
+      "The Flutter app they built handles our 50,000+ daily users flawlessly. Animation smoothness and UI consistency are perfect across devices.",
     initials: "MR",
   },
   {
     id: 3,
     name: "Emily Watson",
-    role: "Full Stack Engineer",
-    company: "InnovateLab",
+    role: "Frontend Lead",
+    company: "FinTech Solutions",
     content:
-      "I love how easy it is to get started. The documentation is excellent and the community support is outstanding.",
+      "Our React.js dashboard loaded in 1.2s thanks to their optimization. The interactive data visualizations increased user engagement by 65%.",
     initials: "EW",
   },
   {
     id: 4,
     name: "David Kim",
-    role: "Lead Architect",
-    company: "CloudSystems",
+    role: "Backend Architect",
+    company: "HealthTech",
     content:
-      "The scalability features are exactly what we needed. We can handle millions of requests without breaking a sweat.",
+      "Their Node.js/MongoDB backend handles 10M+ API requests daily with 99.99% uptime. The real-time data sync implementation is brilliant.",
     initials: "DK",
   },
   {
     id: 5,
     name: "Lisa Thompson",
-    role: "Product Manager",
-    company: "DataFlow",
+    role: "UX Director",
+    company: "EduPlatform",
     content:
-      "Our team productivity has increased dramatically. The real-time collaboration features are game-changing.",
+      "From React Native mobile app to React admin panel - everything feels cohesive. Their design system implementation saved us 300+ dev hours.",
     initials: "LT",
   },
   {
     id: 6,
     name: "Alex Johnson",
-    role: "Backend Developer",
-    company: "WebSolutions",
+    role: "Startup Founder",
+    company: "SocialHub",
     content:
-      "The migration process was seamless. We moved our entire infrastructure in just a few hours with zero downtime.",
+      "Complete solution: Flutter app + React web + Node.js backend. Launched in record time with perfect scalability from day one.",
     initials: "AJ",
   },
 ]
@@ -87,7 +87,7 @@ export default function Component() {
   const row3 = testimonials.slice(4, 6)
 
   return (
-    <div className="min-h-screen  py-16">
+    <div className="min-h-screen py-16">
       <div className="max-w-6xl mx-auto px-4 sm:px-5 lg:px-6">
         {/* Header */}
         <motion.div
@@ -97,9 +97,9 @@ export default function Component() {
           transition={{ duration: 0.8, ease: "easeOut" }}
           viewport={{ once: true, margin: "-100px" }}
         >
-          <h2 className="text-3xl font-bold text-white mb-3">Loved by developers worldwide</h2>
+          <h2 className="text-3xl font-bold text-white mb-3">Trusted by businesses worldwide</h2>
           <p className="text-lg text-gray-300 max-w-xl mx-auto">
-            Join thousands of developers who have transformed their workflow with our platform
+            Join thousands who transformed their web presence with our comprehensive services
           </p>
         </motion.div>
 
@@ -119,9 +119,6 @@ export default function Component() {
             transition={{ duration: 0.8, delay: 0.1 }}
             viewport={{ once: true }}
             animate={{ x: [-1000, 0] }}
-            style={{
-              animationDelay: "0.8s",
-            }}
           >
             <motion.div
               className="flex"
@@ -187,12 +184,12 @@ export default function Component() {
             </motion.div>
           </motion.div>
 
-          {/* Gradient overlays for smooth edges */}
-          <div className="absolute inset-y-0 left-0 w-24 bg-gradient-to-r  to-transparent pointer-events-none z-10" />
-          <div className="absolute inset-y-0 right-0 w-24 bg-gradient-to-l  to-transparent pointer-events-none z-10" />
+          {/* Gradient overlays */}
+          <div className="absolute inset-y-0 left-0 w-24 bg-gradient-to-r from-gray-950 to-transparent pointer-events-none z-10" />
+          <div className="absolute inset-y-0 right-0 w-24 bg-gradient-to-l from-gray-950 to-transparent pointer-events-none z-10" />
         </motion.div>
 
-        {/* Call to action */}
+        {/* CTA */}
         <motion.div
           className="text-center mt-12"
           initial={{ opacity: 0, y: 30 }}
@@ -200,9 +197,14 @@ export default function Component() {
           transition={{ duration: 0.6, delay: 0.4 }}
           viewport={{ once: true, margin: "-50px" }}
         >
-          <p className="text-base text-gray-300 mb-4">Ready to join them?</p>
-          
-          <Button label=" Get Started Today" link="" position="center" paddingY="py-3" color="secondary" />
+          <p className="text-base text-gray-300 mb-4">Need a complete tech solution?</p>
+          <Button 
+            label="Discuss Your Project" 
+            link="" 
+            position="center" 
+            paddingY="py-3" 
+            color="secondary" 
+          />
         </motion.div>
       </div>
     </div>
