@@ -21,11 +21,9 @@ const webServicesContent = [
     title: "Custom Web Development",
     description: "Build scalable, responsive websites and web applications tailored to your business needs with modern technologies and best practices.",
     content: (
-      <div className="h-full w-full bg-gradient-to-br from-blue-600 to-purple-700 flex items-center justify-center p-8">
+      <div className="h-full w-full bg-gradient-to-br from-blue-600 to-purple-700 flex items-center justify-center ">
         <div className="text-center text-white">
-          <Code className="w-16 h-16 mx-auto mb-4" />
-          <h3 className="text-2xl font-bold mb-2">Modern Development</h3>
-          <p className="text-blue-100">React, Next.js, Node.js & More</p>
+          <img src="/website.webp" alt="" />
         </div>
       </div>
     ),
@@ -36,11 +34,9 @@ const webServicesContent = [
     title: "Cloud Infrastructure",
     description: "Deploy and manage your applications with enterprise-grade cloud solutions that scale with your business growth.",
     content: (
-      <div className="h-full w-full bg-gradient-to-br from-emerald-500 to-teal-600 flex items-center justify-center p-8">
+      <div className="h-full w-full bg-gradient-to-br from-emerald-500 to-teal-600 flex items-center justify-center ">
         <div className="text-center text-white">
-          <Globe className="w-16 h-16 mx-auto mb-4" />
-          <h3 className="text-2xl font-bold mb-2">Global Reach</h3>
-          <p className="text-emerald-100">99.9% Uptime Guaranteed</p>
+        <img src="/Flutter.webp" alt="" />
         </div>
       </div>
     ),
@@ -51,11 +47,9 @@ const webServicesContent = [
     title: "Security & Compliance",
     description: "Protect your digital assets with comprehensive security measures and compliance standards for peace of mind.",
     content: (
-      <div className="h-full w-full bg-gradient-to-br from-red-500 to-pink-600 flex items-center justify-center p-8">
+      <div className="h-full w-full bg-gradient-to-br from-red-500 to-pink-600 flex items-center justify-center ">
         <div className="text-center text-white">
-          <Shield className="w-16 h-16 mx-auto mb-4" />
-          <h3 className="text-2xl font-bold mb-2">Bank-Grade Security</h3>
-          <p className="text-red-100">SSL, Encryption & Monitoring</p>
+         <img src="/security1.webp" alt="" />
         </div>
       </div>
     ),
@@ -66,11 +60,9 @@ const webServicesContent = [
     title: "Performance Optimization",
     description: "Maximize your website's speed and performance with advanced optimization techniques and monitoring tools.",
     content: (
-      <div className="h-full w-full bg-gradient-to-br from-orange-500 to-yellow-500 flex items-center justify-center p-8">
+      <div className="h-full w-full bg-gradient-to-br from-orange-500 to-yellow-500 flex items-center justify-center ">
         <div className="text-center text-white">
-          <Zap className="w-16 h-16 mx-auto mb-4" />
-          <h3 className="text-2xl font-bold mb-2">Lightning Fast</h3>
-          <p className="text-orange-100">Sub-second Load Times</p>
+          <img src="/cloud.webp" alt="" />
         </div>
       </div>
     ),
@@ -224,14 +216,14 @@ const backgroundColors = [
         </div>
 
         {/* Sticky Content Card */}
-        <div className="sticky top-10 hidden lg:block">
+        <div className="sticky top-5 hidden lg:block">
           <motion.div
             key={activeCard}
             initial={{ opacity: 0, scale: 0.8, rotateY: -15 }}
             animate={{ opacity: 1, scale: 1, rotateY: 0 }}
             transition={{ duration: 0.6, type: "spring" }}
             className={cn(
-              "h-80 w-96 overflow-hidden rounded-2xl bg-white shadow-2xl ring-1 ring-black/5",
+              "h-[30rem] w-[40rem] overflow-hidden rounded-2xl bg-white shadow-2xl ring-1 ring-black/5",
               contentClassName,
             )}
           >
@@ -254,7 +246,7 @@ const backgroundColors = [
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3 }}
-            className="mt-6 bg-white/10 backdrop-blur-sm rounded-xl p-4 border border-white/20"
+            className="mt-3 bg-white/10 backdrop-blur-sm rounded-xl p-4 border border-white/20"
           >
             <div className="flex items-center justify-between text-white">
               <div className="text-center">
