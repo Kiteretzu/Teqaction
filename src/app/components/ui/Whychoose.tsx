@@ -14,6 +14,7 @@ import {
 } from "lucide-react";
 
 import { cn } from "@/lib/utils";
+import { img } from "framer-motion/client";
 
 // Sample content for web services company
 const webServicesContent = [
@@ -31,17 +32,18 @@ const webServicesContent = [
     icon: Code
   },
   {
-    title: "Cloud Infrastructure",
-    description: "Deploy and manage your applications with enterprise-grade cloud solutions that scale with your business growth.",
+    title: "Cross-Platform App Development",
+    description: "Build high-performance mobile apps for iOS and Android using React Native and Flutter with native-like quality.",
     content: (
-      <div className="h-full w-full bg-gradient-to-br from-emerald-500 to-teal-600 flex items-center justify-center ">
-        <div className="text-center text-white">
-        <img src="/Flutter.webp" alt="" />
-        </div>
-      </div>
+      <img src="/Flutter.webp" alt="" />
     ),
-    features: ["AWS & Azure", "Auto Scaling", "Load Balancing", "CDN Integration"],
-    icon: Globe
+    features: [
+      "React Native Apps", 
+      "Flutter Apps", 
+      "UI/UX Optimization", 
+      "API Integration"
+    ],
+    icon: Globe, // Changed to a mobile icon
   },
   {
     title: "Security & Compliance",
@@ -57,8 +59,8 @@ const webServicesContent = [
     icon: Shield
   },
   {
-    title: "Performance Optimization",
-    description: "Maximize your website's speed and performance with advanced optimization techniques and monitoring tools.",
+    title: "Cloud Infrastructure",
+    description: "Deploy and manage your applications with enterprise-grade cloud solutions that scale with your business growth.",
     content: (
       <div className="h-full w-full bg-gradient-to-br from-orange-500 to-yellow-500 flex items-center justify-center ">
         <div className="text-center text-white">
@@ -66,7 +68,7 @@ const webServicesContent = [
         </div>
       </div>
     ),
-    features: ["Image Optimization", "Code Splitting", "Caching Strategy", "Performance Monitoring"],
+    features: ["AWS & Azure", "Auto Scaling", "Load Balancing", "CDN Integration"],
     icon: Zap
   },
   {
