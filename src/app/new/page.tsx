@@ -24,6 +24,7 @@ import Component from "../components/ui/ParallaxTestimony";
 import NavBarComponet from "../components/global/NavBarComponet";
 import HeroSection from "../components/global/HeroSection";
 import { StickyScrollRevealDemo } from "../components/global/WhyChooseUs";
+import Footer from "../components/ui/Footer";
 
 export default function HomePage() {
   return (
@@ -167,7 +168,7 @@ export default function HomePage() {
       </div>
       {/* Footer */}
       <footer className="bg-black/40 backdrop-blur-sm border-t border-gray-800 text-white py-12 px-4">
-        <div className="container mx-auto">
+        {/*<div className="container mx-auto">
           <div className="grid md:grid-cols-4 gap-8">
             <div>
               <div className="flex items-center space-x-2 mb-4">
@@ -230,7 +231,9 @@ export default function HomePage() {
           <div className="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
             <p>&copy; 2024 TechAction. All rights reserved.</p>
           </div>
-        </div>
+        </div>*/}
+        <Footer/>
+
       </footer>
     </InteractiveGrid>
   );
