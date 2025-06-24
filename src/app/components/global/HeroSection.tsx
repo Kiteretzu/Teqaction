@@ -121,20 +121,10 @@ export default function HeroSection() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
         >
-          {/* Badge */}
-          <motion.div
-            className="inline-flex items-center gap-2 px-4 py-2 bg-black/20 backdrop-blur-sm border border-gray-800/50 rounded-full text-sm text-gray-300 mb-8"
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-          >
-            <MapPin size={16} className="text-red-500" />
-            <span className="font-medium">Into the Darkness</span>
-          </motion.div>
 
           {/* Main Headline */}
           <motion.h1
-            className="text-5xl md:text-7xl lg:text-8xl font-bold mb-8 leading-tight"
+            className="text-5xl md:text-7xl lg:text-8xl mt-16 font-bold mb-8 leading-tight"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.3 }}
@@ -147,7 +137,7 @@ export default function HeroSection() {
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.8, delay: 0.5 }}
             >
-              Wanderlust
+              Teqaction
             </motion.span>
           </motion.h1>
 
@@ -215,26 +205,6 @@ export default function HeroSection() {
                 </div>
               </motion.div>
             ))}
-          </motion.div>
-        </motion.div>
-
-        {/* Scroll Indicator */}
-        <motion.div
-          className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 1.2 }}
-        >
-          <motion.div
-            className="w-6 h-10 border-2 border-red-500 rounded-full flex justify-center"
-            animate={{ opacity: [1, 0.3, 1] }}
-            transition={{ duration: 2, repeat: Infinity }}
-          >
-            <motion.div
-              className="w-1 h-3 bg-red-500 rounded-full mt-2"
-              animate={{ y: [0, 12, 0] }}
-              transition={{ duration: 2, repeat: Infinity }}
-            />
           </motion.div>
         </motion.div>
       </div>

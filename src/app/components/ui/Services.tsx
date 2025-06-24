@@ -216,6 +216,22 @@ const Services = () => {
           />
         ))}
       </div>
+      <div className="absolute top-0 left-0 right-0 h-40 bg-gradient-to-b from-black/70 to-transparent z-5 overflow-hidden">
+        <svg
+          className="absolute top-0 w-full h-full transform rotate-180"
+          viewBox="0 0 1200 300"
+          preserveAspectRatio="none"
+        >
+          <path
+            d="M0,300 L0,200 L200,100 L400,150 L600,80 L800,120 L1000,60 L1200,100 L1200,300 Z"
+            fill="rgba(15, 15, 15, 0.9)"
+          />
+          <path
+            d="M0,300 L0,250 L150,180 L350,200 L550,140 L750,160 L950,120 L1200,140 L1200,300 Z"
+            fill="rgba(30, 30, 30, 0.8)"
+          />
+        </svg>
+      </div>
 
       {/* Aurora Effect - matching hero section */}
       <div className="absolute inset-0 overflow-hidden">
@@ -288,6 +304,22 @@ const Services = () => {
                       style={{ width: `${progress}%` }}
                     />
                   )}
+                  <div className="absolute bottom-0 left-0 right-0 h-64 bg-gradient-to-t from-black/70 to-transparent z-5">
+                    <svg
+                      className="absolute bottom-0 w-full h-full"
+                      viewBox="0 0 1200 300"
+                      preserveAspectRatio="none"
+                    >
+                      <path
+                        d="M0,300 L0,200 L200,100 L400,150 L600,80 L800,120 L1000,60 L1200,100 L1200,300 Z"
+                        fill="rgba(15, 15, 15, 0.9)"
+                      />
+                      <path
+                        d="M0,300 L0,250 L150,180 L350,200 L550,140 L750,160 L950,120 L1200,140 L1200,300 Z"
+                        fill="rgba(30, 30, 30, 0.8)"
+                      />
+                    </svg>
+                  </div>
 
                   {/* Glow Effect */}
                   {(isActive || isHovered) && (
