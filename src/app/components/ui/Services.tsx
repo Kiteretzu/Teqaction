@@ -1,412 +1,452 @@
-import React, { useState, useEffect, useCallback, useMemo } from "react";
-import { Server, Smartphone, Globe, Terminal, Cloud } from "lucide-react";
-import Button from "./Button";
+"use client";
+
+import { useState, useEffect, useCallback, useMemo } from "react";
+import {
+  Server,
+  Smartphone,
+  Globe,
+  Cloud,
+  Sparkles,
+  ArrowRight,
+  Play,
+  Pause,
+  MapPin,
+  Skull,
+  Eye,
+  Zap,
+} from "lucide-react";
 
 interface Service {
   id: string;
   title: string;
   icon: React.ComponentType<{ size?: number; className?: string }>;
   color: string;
+  accentColor: string;
   description: string;
   features: string[];
 }
 
-interface ServicesProps {
-  isVisible?: boolean;
-}
+const Button = ({
+  label,
+  variant = "primary",
+  icon,
+  onClick,
+}: {
+  label: string;
+  variant?: "primary" | "secondary";
+  icon?: React.ReactNode;
+  onClick?: () => void;
+}) => {
+  const baseClasses =
+    "group relative overflow-hidden rounded-full font-semibold transition-all duration-300 flex items-center gap-2 cursor-pointer";
 
-const Services: React.FC<ServicesProps> = ({ isVisible = false }) => {
-  const [activeService, setActiveService] = useState<string>("backend");
-  const [progress, setProgress] = useState<number>(0);
-  const [isAutoPlaying, setIsAutoPlaying] = useState<boolean>(true);
-  const [isNavbarVisible, setIsNavbarVisible] = useState<boolean>(false);
-  const [isContentVisible, setIsContentVisible] = useState<boolean>(false);
-  const [isMobile, setIsMobile] = useState<boolean>(false);
-  const [touchStartX, setTouchStartX] = useState<number>(0);
+  const variants = {
+    primary:
+      "px-8 py-4 bg-gradient-to-r from-orange-600 to-red-600 hover:from-red-600 hover:to-orange-600 text-white shadow-lg hover:shadow-xl transform hover:scale-105",
+    secondary:
+      "px-6 py-4 bg-white/20 backdrop-blur-sm border border-white/30 text-white hover:bg-white/30 hover:border-white/50 hover:scale-105",
+  };
 
-  // Memoized services data to prevent unnecessary re-renders
-  const services: Record<string, Service> = useMemo(
+  return (
+    <button className={`${baseClasses} ${variants[variant]}`} onClick={onClick}>
+      <span className="relative z-10">{label}</span>
+      {icon && (
+        <div className="relative z-10 transform group-hover:translate-x-1 group-hover:scale-110 transition-transform duration-200">
+          {icon}
+        </div>
+      )}
+      {variant === "primary" && (
+        <div className="absolute inset-0 bg-gradient-to-r from-red-600 to-orange-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+      )}
+    </button>
+  );
+};
+
+const Services = () => {
+  const [activeService, setActiveService] = useState("backend");
+  const [progress, setProgress] = useState(0);
+  const [isAutoPlaying, setIsAutoPlaying] = useState(true);
+  const [hoveredService, setHoveredService] = useState<string | null>(null);
+  const [isVisible, setIsVisible] = useState(false);
+
+  // Services data with dark theme matching hero section
+  const services = useMemo(
     () => ({
       backend: {
         id: "backend",
-        title: "Backend Development",
+        title: "Shadow Architecture",
         icon: Server,
-        color: "from-slate-800 to-slate-900",
-        description: "Robust server-side solutions with Node.js and Express.js",
+        color: "from-black via-gray-900 to-slate-900",
+        accentColor: "from-red-500 to-orange-600",
+        description:
+          "Forge powerful server-side realms with Node.js and Express.js for applications that thrive in the darkness",
         features: [
-          "RESTful API Development",
-          "Database Integration",
-          "Authentication Systems",
-          "Real-time Applications",
-          "Microservices Architecture",
+          "Dark API Architectures",
+          "Cryptic Database Integration",
+          "Shadow Authentication",
+          "Real-time Dark Channels",
+          "Forbidden Microservices",
         ],
       },
       mobile: {
         id: "mobile",
-        title: "Mobile Development",
+        title: "Pocket Mysteries",
         icon: Smartphone,
-        color: "from-slate-900 to-black",
-        description: "Cross-platform mobile apps with Flutter and React Native",
+        color: "from-black via-gray-900 to-slate-900",
+        accentColor: "from-orange-500 to-red-600",
+        description:
+          "Cross-platform mobile portals with Flutter and React Native for iOS and Android exploration",
         features: [
-          "iOS & Android Apps",
-          "Cross-platform Development",
-          "Native Performance",
-          "Push Notifications",
-          "App Store Deployment",
+          "Dual-Realm Apps",
+          "Cross-Dimensional Development",
+          "Native Dark Performance",
+          "Whispered Notifications",
+          "Forbidden Store Deployment",
         ],
       },
       web: {
         id: "web",
-        title: "Web Development",
+        title: "Web of Shadows",
         icon: Globe,
-        color: "from-slate-700 to-slate-800",
-        description: "Modern web applications with React and responsive design",
+        color: "from-gray-900 via-black to-slate-900",
+        accentColor: "from-red-600 to-orange-500",
+        description:
+          "Modern web applications with React and responsive design that adapt to all viewing portals",
         features: [
-          "React Applications",
-          "Responsive Design",
-          "Progressive Web Apps",
-          "Single Page Applications",
-          "Modern UI/UX",
+          "Responsive Dark Interfaces",
+          "Modern Framework Mastery",
+          "Cross-Browser Compatibility",
+          "Performance Optimization",
+          "SEO Dark Arts",
         ],
       },
-      express: {
-        id: "express",
-        title: "Express.js",
-        icon: Terminal,
-        color: "from-slate-800 to-slate-900",
-        description: "Fast and minimalist web framework for Node.js",
-        features: [
-          "Middleware Integration",
-          "Routing Solutions",
-          "Template Engines",
-          "Error Handling",
-          "Security Features",
-        ],
-      },
-      devops: {
-        id: "devops",
-        title: "DevOps",
+      cloud: {
+        id: "cloud",
+        title: "Ethereal Infrastructure",
         icon: Cloud,
-        color: "from-slate-900 to-black",
-        description: "CI/CD pipelines, containerization, and cloud deployment",
+        color: "from-slate-900 via-gray-900 to-black",
+        accentColor: "from-orange-600 to-red-500",
+        description:
+          "Scalable cloud solutions with AWS, Azure, and Google Cloud for applications that transcend dimensions",
         features: [
-          "Docker Containerization",
-          "CI/CD Pipelines",
-          "Cloud Deployment",
-          "Infrastructure Automation",
-          "Monitoring & Logging",
+          "Multi-Cloud Deployment",
+          "Serverless Functions",
+          "Container Orchestration",
+          "Auto-scaling Solutions",
+          "Global Content Delivery",
         ],
       },
     }),
     []
   );
 
-  const navItems: Service[] = useMemo(
-    () => Object.values(services),
-    [services]
-  );
-  const currentService: Service = services[activeService];
-  const currentIndex: number = navItems.findIndex(
-    (service) => service.id === activeService
-  );
+  const serviceKeys = Object.keys(services);
 
-  // Mobile detection with debounced resize handler
+  // Auto-rotation effect
   useEffect(() => {
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth <= 768);
-    };
+    if (!isAutoPlaying) return;
 
-    let timeoutId: NodeJS.Timeout;
-    const debouncedResize = () => {
-      clearTimeout(timeoutId);
-      timeoutId = setTimeout(checkMobile, 100);
-    };
-
-    checkMobile();
-    window.addEventListener("resize", debouncedResize);
-    return () => {
-      window.removeEventListener("resize", debouncedResize);
-      clearTimeout(timeoutId);
-    };
-  }, []);
-
-  // Visibility animations with mobile considerations
-  useEffect(() => {
-    if (isVisible) {
-      setIsNavbarVisible(true);
-      setTimeout(() => setIsContentVisible(true), isMobile ? 300 : 500);
-    }
-  }, [isVisible, isMobile]);
-
-  // Auto-play with mobile-optimized intervals
-  useEffect(() => {
-    if (!isAutoPlaying || !isContentVisible) return;
-
-    const interval = isMobile ? 200 : 150; // Slower on mobile for better performance
-    const progressStep = isMobile ? 2 : 1.5; // Faster progress on mobile
-
-    const progressInterval = setInterval(() => {
+    const interval = setInterval(() => {
       setProgress((prev) => {
         if (prev >= 100) {
-          const nextIndex = (currentIndex + 1) % navItems.length;
-          setActiveService(navItems[nextIndex].id);
+          const currentIndex = serviceKeys.indexOf(activeService);
+          const nextIndex = (currentIndex + 1) % serviceKeys.length;
+          setActiveService(serviceKeys[nextIndex]);
           return 0;
         }
-        return prev + progressStep;
+        return prev + 2;
       });
-    }, interval);
+    }, 100);
 
-    return () => clearInterval(progressInterval);
-  }, [currentIndex, navItems, isAutoPlaying, isContentVisible, isMobile]);
+    return () => clearInterval(interval);
+  }, [activeService, isAutoPlaying, serviceKeys]);
 
-  // Optimized service click handler
-  const handleServiceClick = useCallback(
-    (serviceId: string): void => {
-      setActiveService(serviceId);
-      setProgress(0);
-      setIsAutoPlaying(false);
-      setTimeout(() => setIsAutoPlaying(true), isMobile ? 8000 : 10000);
-    },
-    [isMobile]
-  );
+  // Intersection Observer for animations
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+        }
+      },
+      { threshold: 0.1 }
+    );
 
-  // Touch handlers for mobile swipe navigation
-  const handleTouchStart = useCallback((e: React.TouchEvent) => {
-    setTouchStartX(e.touches[0].clientX);
+    const element = document.getElementById("services-section");
+    if (element) {
+      observer.observe(element);
+    }
+
+    return () => {
+      if (element) {
+        observer.unobserve(element);
+      }
+    };
   }, []);
 
-  const handleTouchEnd = useCallback(
-    (e: React.TouchEvent) => {
-      if (!isMobile) return;
+  const handleServiceClick = useCallback((serviceId: string) => {
+    setActiveService(serviceId);
+    setProgress(0);
+  }, []);
 
-      const touchEndX = e.changedTouches[0].clientX;
-      const diff = touchStartX - touchEndX;
-
-      if (Math.abs(diff) > 50) {
-        // Minimum swipe distance
-        if (diff > 0 && currentIndex < navItems.length - 1) {
-          // Swipe left - next service
-          handleServiceClick(navItems[currentIndex + 1].id);
-        } else if (diff < 0 && currentIndex > 0) {
-          // Swipe right - previous service
-          handleServiceClick(navItems[currentIndex - 1].id);
-        }
-      }
-    },
-    [currentIndex, handleServiceClick, isMobile, navItems, touchStartX]
-  );
-
-  // Auto-play toggle handler
   const toggleAutoPlay = useCallback(() => {
-    setIsAutoPlaying(!isAutoPlaying);
-  }, [isAutoPlaying]);
+    setIsAutoPlaying((prev) => !prev);
+    setProgress(0);
+  }, []);
+
+  const currentService = services[activeService as keyof typeof services];
 
   return (
-    <div className="min-h-screen  text-white overflow-hidden">
-      {/* Mobile-First Navigation Bar */}
-      <nav
-        className={`backdrop-blur-2xl   sticky top-0  transition-all duration-700 ease-out ${
-          isNavbarVisible
-            ? "translate-x-0 opacity-100"
-            : "-translate-x-full opacity-0"
-        }`}
-      >
-        <div className="max-w-7xl mx-auto px-3 md:px-6 py-3 md:py-4">
-          <div className="flex items-center justify-between">
-            {/* Mobile: Horizontal scrollable nav */}
-            <div
-              className={`flex ${
-                isMobile
-                  ? "overflow-x-auto scrollbar-hide space-x-2 pb-2"
-                  : "space-x-2 gap-2"
-              } w-full`}
-            >
-              {navItems.map((service, index) => {
-                const IconComponent = service.icon;
-                const isActive = activeService === service.id;
-                const isCurrentlyProgressing = isActive && isAutoPlaying;
+    <section
+      id="services-section"
+      className="relative min-h-screen bg-gradient-to-br from-black via-gray-900 to-slate-900 overflow-hidden"
+    >
+      {/* Floating Stars/Lights - matching hero section */}
+      <div className="absolute inset-0 overflow-hidden">
+        {[...Array(15)].map((_, i) => (
+          <div
+            key={i}
+            className="absolute w-1 h-1 bg-red-500 rounded-full animate-pulse"
+            style={{
+              left: `${Math.random() * 100}%`,
+              top: `${Math.random() * 100}%`,
+              animationDelay: `${Math.random() * 3}s`,
+              animationDuration: `${3 + Math.random() * 4}s`,
+            }}
+          />
+        ))}
+      </div>
 
-                return (
-                  <button
-                    key={service.id}
-                    onClick={() => handleServiceClick(service.id)}
-                    className={`relative flex items-center space-x-2 md:space-x-3 px-3 md:px-6 lg:px-10 py-3 md:py-5 rounded-xl md:rounded-2xl transition-all duration-500 ease-out transform overflow-hidden backdrop-blur-xl border flex-shrink-0 ${
-                      isActive
-                        ? "bg-slate-900/40 text-white shadow-2xl border-white/20 scale-105"
-                        : "hover:bg-slate-800/30 text-slate-400 hover:text-white hover:scale-102 border-white/5 hover:border-white/10"
-                    } ${isMobile ? "min-w-max" : ""}`}
-                    style={{
-                      transform: isNavbarVisible
-                        ? `translateX(0) ${
-                            isActive ? "scale(1.05)" : "scale(1)"
-                          }`
-                        : `translateX(-50px)`,
-                      opacity: isNavbarVisible ? 1 : 0,
-                    }}
-                  >
-                    {/* Progress Bar Fill - Mobile optimized */}
-                    {isCurrentlyProgressing && (
-                      <div
-                        className="absolute inset-0 bg-gradient-to-r from-slate-900/60 to-black/80 rounded-xl md:rounded-2xl transition-all duration-100 ease-linear origin-left backdrop-blur-sm"
-                        style={{
-                          transform: `scaleX(${progress / 100 + 0.05})`,
-                          transformOrigin: "left",
-                        }}
-                      />
-                    )}
+      {/* Aurora Effect - matching hero section */}
+      <div className="absolute inset-0 overflow-hidden">
+        <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-red-900/10 via-orange-900/5 to-transparent animate-pulse opacity-20" />
+      </div>
 
-                    {/* Button Content - Responsive sizing */}
-                    <div className="relative z-10 flex items-center space-x-2 md:space-x-3">
-                      <IconComponent
-                        size={isMobile ? 16 : 20}
-                        className="transition-transform duration-500"
-                      />
-                      <span
-                        className={`font-medium transition-all duration-500 ${
-                          isMobile ? "text-sm" : "hidden sm:inline"
-                        }`}
-                      >
-                        {isMobile ? service.title.split(" ")[0] : service.title}
-                      </span>
-                    </div>
-
-                    {/* Active State Overlay */}
-                    {isActive && (
-                      <div className="absolute inset-0 rounded-xl md:rounded-2xl bg-gradient-to-r from-white/5 to-white/10 backdrop-blur-sm animate-pulse border border-white/10" />
-                    )}
-                  </button>
-                );
-              })}
-            </div>
-          </div>
-        </div>
-      </nav>
-
-      {/* Content Area - Mobile optimized */}
-      <div
-        className="max-w-7xl mx-auto px-3 md:px-6  py-6 md:py-12"
-        onTouchStart={handleTouchStart}
-        onTouchEnd={handleTouchEnd}
-      >
+      <div className="relative z-10 container mx-auto px-6 py-20">
+        {/* Section Title */}
         <div
-          className={`relative overflow-hidden border border-white/10 rounded-2xl md:rounded-4xl transition-all duration-700 ease-out backdrop-blur-2xl bg-black/20 ${
-            isContentVisible
-              ? "translate-x-0 opacity-100"
-              : "translate-x-full opacity-0"
+          className={`text-center mb-16 transform transition-all duration-1000 ${
+            isVisible ? "translate-y-0 opacity-100" : "translate-y-12 opacity-0"
           }`}
         >
-          <div key={activeService} className="transition-opacity duration-700">
-            <div className="bg-slate-900/20 backdrop-blur-3xl rounded-2xl md:rounded-3xl p-6 md:p-12 border border-white/5">
-              {/* Header section - Mobile responsive */}
-              <div className="flex flex-col md:flex-row items-start md:items-center space-y-4 md:space-y-0 md:space-x-8 mb-8 md:mb-12">
-                <div
-                  className={`w-16 h-16 md:w-20 lg:w-24 md:h-20 lg:h-24 rounded-2xl md:rounded-3xl bg-gradient-to-br ${currentService.color} flex items-center justify-center shadow-2xl transition-all duration-500 backdrop-blur-sm border border-white/10 flex-shrink-0`}
-                >
-                  <currentService.icon
-                    size={isMobile ? 32 : 48}
-                    className="text-white"
-                  />
-                </div>
-                <div className="flex-1">
-                  <h2 className="text-2xl md:text-4xl lg:text-5xl font-bold text-white mb-2 md:mb-4 drop-shadow-lg leading-tight">
-                    {currentService.title}
-                  </h2>
-                  <p className="text-base md:text-xl text-slate-300 leading-relaxed">
-                    {currentService.description}
-                  </p>
-                </div>
-              </div>
-
-              {/* Features grid - Mobile optimized */}
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
-                {currentService.features.map((feature, index) => (
-                  <div
-                    key={feature}
-                    className="bg-slate-800/20 backdrop-blur-xl rounded-xl md:rounded-2xl p-4 md:p-6 border border-white/10 hover:border-white/20 hover:bg-slate-700/20 transition-all duration-500 shadow-xl hover:shadow-2xl"
-                    style={{
-                      animationDelay: `${index * 100}ms`,
-                    }}
-                  >
-                    <div className="flex items-center space-x-3 md:space-x-4">
-                      <div
-                        className={`w-3 h-3 md:w-4 md:h-4 rounded-full bg-gradient-to-r ${currentService.color} shadow-lg flex-shrink-0`}
-                      />
-                      <h3 className="text-base md:text-lg font-semibold text-white leading-tight">
-                        {feature}
-                      </h3>
-                    </div>
-                  </div>
-                ))}
-              </div>
-
-              {/* CTA Button - Mobile optimized */}
-              <div className="mt-12 md:mt-16 text-center">
-                <Button
-                  label={`Get Started${
-                    isMobile ? "" : ` with ${currentService.title}`
-                  }`}
-                  position="center"
-                  link="/contact"
-                  paddingX={isMobile ? "px-6" : "px-8"}
-                  paddingY={isMobile ? "py-3" : "py-4"}
-                  color="custom"
-                  customColor="bg-slate-800/40 hover:bg-slate-700/60 text-sm md:text-base"
-                />
-              </div>
-            </div>
+          {/* Badge */}
+          <div className="inline-flex items-center gap-2 px-4 py-2 bg-black/20 backdrop-blur-sm border border-gray-800/50 rounded-full text-sm text-gray-300 mb-8">
+            <Sparkles size={16} className="text-red-500" />
+            <span className="font-medium">Dark Arts & Services</span>
           </div>
+
+          <h2 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6">
+            <span className="text-white block mb-2">Unleash</span>
+            <span className="bg-gradient-to-r from-red-500 via-orange-600 to-red-600 bg-clip-text text-transparent bg-300% animate-gradient">
+              Digital Power
+            </span>
+          </h2>
+
+          <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+            Harness forbidden technologies and{" "}
+            <span className="text-red-500 font-semibold">
+              dark methodologies
+            </span>{" "}
+            to craft digital experiences that transcend ordinary boundaries
+          </p>
         </div>
 
-        {/* Controls - Mobile optimized */}
-        <div className="mt-6 md:mt-8 text-center">
-          <div className="flex flex-col md:flex-row items-center justify-center space-y-4 md:space-y-0 md:space-x-4">
-            <button
-              onClick={toggleAutoPlay}
-              className="text-slate-400 hover:text-white transition-colors duration-500 text-xs md:text-sm backdrop-blur-sm bg-black/20 px-3 md:px-4 py-2 rounded-lg border border-white/10 hover:border-white/20 touch-manipulation"
-            >
-              {isAutoPlaying ? "Pause Auto-play" : "Resume Auto-play"}
-            </button>
+        {/* Services Grid */}
+        <div className="grid lg:grid-cols-2 gap-12 items-start max-w-7xl mx-auto">
+          {/* Service Navigation */}
+          <div
+            className={`space-y-4 transform transition-all duration-1000 delay-300 ${
+              isVisible
+                ? "translate-x-0 opacity-100"
+                : "-translate-x-12 opacity-0"
+            }`}
+          >
+            {Object.values(services).map((service, index) => {
+              const IconComponent = service.icon;
+              const isActive = activeService === service.id;
+              const isHovered = hoveredService === service.id;
 
-            {/* Progress indicators */}
-            <div className="flex space-x-2 bg-black/20 backdrop-blur-sm px-3 md:px-4 py-2 rounded-lg border border-white/10">
-              {navItems.map((_, index) => (
-                <button
-                  key={index}
-                  onClick={() => handleServiceClick(navItems[index].id)}
-                  className="touch-manipulation p-1"
+              return (
+                <div
+                  key={service.id}
+                  className={`relative p-6 rounded-2xl border transition-all duration-500 cursor-pointer group overflow-hidden transform hover:scale-102 hover:-translate-y-1 ${
+                    isActive
+                      ? "bg-black/50 border-red-500/50 shadow-2xl shadow-red-500/20"
+                      : "bg-black/20 border-gray-800/50 hover:bg-black/40 hover:border-gray-700/50"
+                  }`}
+                  onClick={() => handleServiceClick(service.id)}
+                  onMouseEnter={() => setHoveredService(service.id)}
+                  onMouseLeave={() => setHoveredService(null)}
+                  style={{
+                    animationDelay: `${index * 0.1}s`,
+                  }}
                 >
-                  <div
-                    className={`w-2 h-2 rounded-full transition-all duration-500 ${
-                      index === currentIndex
-                        ? "bg-white shadow-lg"
-                        : "bg-slate-600 hover:bg-slate-500"
-                    }`}
-                  />
-                </button>
-              ))}
-            </div>
+                  {/* Progress Bar */}
+                  {isActive && (
+                    <div
+                      className="absolute top-0 left-0 h-1 bg-gradient-to-r from-red-500 to-orange-600 transition-all duration-100"
+                      style={{ width: `${progress}%` }}
+                    />
+                  )}
 
-            {/* Mobile swipe hint */}
-            {isMobile && (
-              <p className="text-xs text-slate-500 mt-2">
-                Swipe left/right to navigate
+                  {/* Glow Effect */}
+                  {(isActive || isHovered) && (
+                    <div className="absolute inset-0 bg-gradient-to-r from-red-500/10 to-orange-600/10 rounded-2xl" />
+                  )}
+
+                  <div className="relative z-10 flex items-center gap-4">
+                    <div
+                      className={`p-3 rounded-xl transition-all duration-300 transform group-hover:rotate-6 group-hover:scale-110 ${
+                        isActive
+                          ? "bg-gradient-to-r from-red-500 to-orange-600"
+                          : "bg-gray-800 group-hover:bg-gray-700"
+                      }`}
+                    >
+                      <IconComponent
+                        size={24}
+                        className={isActive ? "text-white" : "text-gray-300"}
+                      />
+                    </div>
+
+                    <div className="flex-1">
+                      <h3
+                        className={`text-lg font-bold mb-1 transition-colors duration-300 ${
+                          isActive
+                            ? "text-white"
+                            : "text-gray-200 group-hover:text-white"
+                        }`}
+                      >
+                        {service.title}
+                      </h3>
+                      <p className="text-gray-400 text-sm line-clamp-2">
+                        {service.description}
+                      </p>
+                    </div>
+
+                    <div
+                      className={`transition-all duration-300 transform ${
+                        isActive
+                          ? "text-red-500 rotate-90"
+                          : "text-gray-600 rotate-0"
+                      }`}
+                    >
+                      <ArrowRight size={20} />
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
+
+            {/* Auto-play Control */}
+            <div className="flex items-center justify-center pt-4">
+              <button
+                onClick={toggleAutoPlay}
+                className="flex items-center gap-2 px-4 py-2 bg-black/30 hover:bg-black/50 border border-gray-800/50 rounded-full text-gray-300 hover:text-white transition-all duration-300 transform hover:scale-105"
+              >
+                {isAutoPlaying ? (
+                  <Pause size={16} className="text-red-500" />
+                ) : (
+                  <Play size={16} className="text-red-500" />
+                )}
+                <span className="text-sm font-medium">
+                  {isAutoPlaying ? "Pause" : "Play"} Auto-rotation
+                </span>
+              </button>
+            </div>
+          </div>
+
+          {/* Service Details */}
+          <div
+            className={`lg:sticky lg:top-8 transform transition-all duration-1000 delay-500 ${
+              isVisible
+                ? "translate-x-0 opacity-100"
+                : "translate-x-12 opacity-0"
+            }`}
+          >
+            <div
+              key={activeService}
+              className="bg-black/30 backdrop-blur-sm border border-gray-800/50 rounded-3xl p-8 shadow-2xl transition-all duration-500"
+            >
+              {/* Service Icon and Title */}
+              <div className="flex items-center gap-4 mb-6">
+                <div className="p-4 bg-gradient-to-r from-red-500 to-orange-600 rounded-2xl transform hover:rotate-12 hover:scale-105 transition-all duration-300">
+                  <currentService.icon size={32} className="text-white" />
+                </div>
+                <div>
+                  <h3 className="text-2xl font-bold text-white mb-1">
+                    {currentService.title}
+                  </h3>
+                  <div className="w-12 h-1 bg-gradient-to-r from-red-500 to-orange-600 rounded-full" />
+                </div>
+              </div>
+
+              {/* Description */}
+              <p className="text-gray-300 text-lg leading-relaxed mb-8">
+                {currentService.description}
               </p>
-            )}
+
+              {/* Features */}
+              <div className="space-y-4 mb-8">
+                <h4 className="text-white font-semibold flex items-center gap-2">
+                  <Skull size={16} className="text-red-500" />
+                  Dark Capabilities
+                </h4>
+                <div className="grid gap-3">
+                  {currentService.features.map((feature, index) => (
+                    <div
+                      key={feature}
+                      className="flex items-center gap-3 p-3 bg-black/20 rounded-xl border border-gray-800/30 transform transition-all duration-300 hover:bg-black/40 hover:translate-x-2"
+                      style={{
+                        animationDelay: `${index * 0.1}s`,
+                      }}
+                    >
+                      <div className="w-2 h-2 bg-gradient-to-r from-red-500 to-orange-600 rounded-full animate-pulse" />
+                      <span className="text-gray-300">{feature}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* CTA Button */}
+              <Button
+                label="Embrace the Darkness"
+                variant="primary"
+                icon={<Eye size={18} />}
+              />
+            </div>
           </div>
         </div>
       </div>
 
-      {/* Custom scrollbar styles */}
       <style jsx>{`
-        .scrollbar-hide {
-          -ms-overflow-style: none;
-          scrollbar-width: none;
+        @keyframes gradient {
+          0% {
+            background-position: 0% 50%;
+          }
+          50% {
+            background-position: 100% 50%;
+          }
+          100% {
+            background-position: 0% 50%;
+          }
         }
-        .scrollbar-hide::-webkit-scrollbar {
-          display: none;
+        .animate-gradient {
+          animation: gradient 8s ease infinite;
+        }
+        .bg-300\\% {
+          background-size: 300% 300%;
+        }
+        .hover\\:scale-102:hover {
+          transform: scale(1.02);
+        }
+        .line-clamp-2 {
+          display: -webkit-box;
+          -webkit-line-clamp: 2;
+          -webkit-box-orient: vertical;
+          overflow: hidden;
         }
       `}</style>
-    </div>
+    </section>
   );
 };
 

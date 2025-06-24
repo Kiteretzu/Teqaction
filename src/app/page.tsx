@@ -1,311 +1,84 @@
 "use client";
+import { ArrowRight, Code, Server, Shield, Smartphone } from "lucide-react";
 
-import { useState, useEffect, useRef, useCallback } from "react";
-import Button from "./components/ui/Button";
-import InteractiveGrid from "./components/ui/InteractiveGrid";
-import { HandPlatter } from 'lucide-react';
-
+import { Button } from "@/components/ui/button";
 import {
-  Code,
-  Palette,
-  Smartphone,
-  Globe,
-  Database,
-  Shield,
-  Zap,
-  Camera,
-  Headphones,
-  Rocket,
-  Target,
-  Users,
-  TrendingUp,
-  Heart,
-  Star,
-} from "lucide-react";
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import HeroSection from "./components/global/HeroSection";
+import NavBarComponet from "./components/global/NavBarComponet";
+import { StickyScrollRevealDemo } from "./components/global/WhyChooseUs";
+import Footer from "./components/ui/Footer";
+import Component from "./components/ui/ParallaxTestimony";
+import Services from "./components/ui/Services";
 import { Spotlight } from "./components/ui/spotlight-new";
 
-import {
-  Navbar,
-  NavBody,
-  NavItems,
-  MobileNav,
-  NavbarLogo,
-  NavbarButton,
-  MobileNavHeader,
-  MobileNavToggle,
-  MobileNavMenu,
-} from "./components/ui/Navbar";
-import { LampDemo } from "./components/LampDemo";
-import Services from "./components/ui/Services";
-import { FeaturesSectionDemo } from "./components/ui/ServicesPros";
-import Component from "./components/ui/ParallaxTestimony";
-import Footer from "./components/ui/Footer";
-import NavBarComponet from "./components/global/NavBarComponet";
-
-export default function Home() {
-  const [isHovered, setIsHovered] = useState(false);
-  const [isServicesVisible, setIsServicesVisible] = useState(false);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [isMobile, setIsMobile] = useState(false);
-  const servicesRef = useRef(null);
-
-  // Optimized mobile detection
-  useEffect(() => {
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth <= 768);
-    };
-    
-    checkMobile();
-    window.addEventListener('resize', checkMobile);
-    return () => window.removeEventListener('resize', checkMobile);
-  }, []);
-
-  // Optimized intersection observer with better mobile thresholds
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsServicesVisible(true);
-        }
-      },
-      {
-        threshold: isMobile ? 0.1 : 0.3, // Lower threshold for mobile
-        rootMargin: isMobile ? '-20px 0px' : '-50px 0px', // Smaller margin for mobile
-      }
-    );
-
-    if (servicesRef.current) {
-      observer.observe(servicesRef.current);
-    }
-
-    return () => {
-      if (servicesRef.current) {
-        observer.unobserve(servicesRef.current);
-      }
-    };
-  }, [isMobile]);
-
-  // Prevent body scroll when mobile menu is open
-  useEffect(() => {
-    if (isMobileMenuOpen) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = 'unset';
-    }
-    
-    return () => {
-      document.body.style.overflow = 'unset';
-    };
-  }, [isMobileMenuOpen]);
-
-  // Optimized mobile menu close handler
-  const handleMobileMenuClose = useCallback(() => {
-    setIsMobileMenuOpen(false);
-  }, []);
-
-  const navItems = [
-    {
-      name: "About",
-      link: "#about",
-    },
-    {
-      name: "Services",
-      link: "#services",
-    },
-    {
-      name: "Testimonials",
-      link: "#testimonials",
-    },
-    {
-      name: "Contact",
-      link: "#contact",
-    },
-  ];
-
-  const allServices = [
-    {
-      title: "Web Development",
-      icon: (
-        <Globe className="h-full w-full text-neutral-500 dark:text-neutral-300" />
-      ),
-      href: "#web-dev",
-      description: "Custom websites and web applications",
-    },
-    {
-      title: "Mobile Apps",
-      icon: (
-        <Smartphone className="h-full w-full text-neutral-500 dark:text-neutral-300" />
-      ),
-      href: "#mobile",
-      description: "iOS and Android app development",
-    },
-    {
-      title: "UI/UX Design",
-      icon: (
-        <Palette className="h-full w-full text-neutral-500 dark:text-neutral-300" />
-      ),
-      href: "#design",
-      description: "Beautiful and intuitive user interfaces",
-    },
-    {
-      title: "Backend Development",
-      icon: (
-        <Database className="h-full w-full text-neutral-500 dark:text-neutral-300" />
-      ),
-      href: "#backend",
-      description: "Scalable server-side solutions",
-    },
-    {
-      title: "DevOps",
-      icon: (
-        <Shield className="h-full w-full text-neutral-500 dark:text-neutral-300" />
-      ),
-      href: "#devops",
-      description: "Deployment and infrastructure management",
-    },
-    {
-      title: "Performance Optimization",
-      icon: (
-        <Zap className="h-full w-full text-neutral-500 dark:text-neutral-300" />
-      ),
-      href: "#performance",
-      description: "Speed up your applications",
-    },
-    {
-      title: "Photography",
-      icon: (
-        <Camera className="h-full w-full text-neutral-500 dark:text-neutral-300" />
-      ),
-      href: "#photography",
-      description: "Professional photography services",
-    },
-    {
-      title: "Audio Production",
-      icon: (
-        <Headphones className="h-full w-full text-neutral-500 dark:text-neutral-300" />
-      ),
-      href: "#audio",
-      description: "Music and podcast production",
-    },
-    {
-      title: "Startup Consulting",
-      icon: (
-        <Rocket className="h-full w-full text-neutral-500 dark:text-neutral-300" />
-      ),
-      href: "#consulting",
-      description: "Launch your business idea",
-    },
-    {
-      title: "Digital Marketing",
-      icon: (
-        <Target className="h-full w-full text-neutral-500 dark:text-neutral-300" />
-      ),
-      href: "#marketing",
-      description: "Grow your online presence",
-    },
-    {
-      title: "Team Building",
-      icon: (
-        <Users className="h-full w-full text-neutral-500 dark:text-neutral-300" />
-      ),
-      href: "#team",
-      description: "Build high-performing teams",
-    },
-    {
-      title: "Growth Strategy",
-      icon: (
-        <TrendingUp className="h-full w-full text-neutral-500 dark:text-neutral-300" />
-      ),
-      href: "#growth",
-      description: "Scale your business effectively",
-    },
-    {
-      title: "Brand Identity",
-      icon: (
-        <Heart className="h-full w-full text-neutral-500 dark:text-neutral-300" />
-      ),
-      href: "#branding",
-      description: "Create memorable brand experiences",
-    },
-    {
-      title: "Quality Assurance",
-      icon: (
-        <Star className="h-full w-full text-neutral-500 dark:text-neutral-300" />
-      ),
-      href: "#qa",
-      description: "Ensure product excellence",
-    },
-    {
-      title: "Custom Development",
-      icon: (
-        <Code className="h-full w-full text-neutral-500 dark:text-neutral-300" />
-      ),
-      href: "#custom",
-      description: "Tailored software solutions",
-    },
-  ];
-
+export default function HomePage() {
   return (
-    <>
-      {/* Hero Section with Mobile Optimizations */}
-      <InteractiveGrid>
-        <div id="about" className="w-screen min-h-screen flex flex-col justify-between overflow-hidden">
-          {/* Fixed Navbar with Mobile-First Design */}
-          <div className="fixed w-full z-50 bg-black/80 backdrop-blur-sm md:bg-transparent md:backdrop-blur-none">
-            <NavBarComponet/>
-          </div>
-
-          {/* Hero Content */}
-          <div className="flex-1 flex items-center justify-center pt-16 md:pt-0">
-            <Spotlight />
-            <LampDemo />
-          </div>
-        </div>
-      </InteractiveGrid>
-
-      {/* Services Section - Mobile Optimized */}
-      <div className="w-full flex flex-col text-white justify-center items-center bg-gradient-to-t from-black via-gray-900 to-black px-4 md:px-8 py-12 md:py-20">
-        <div 
-          ref={servicesRef}
-          className={`w-full z-1  text-center flex flex-col md:flex-row items-center justify-center gap-4 md:gap-10 text-gray-400 font-bold mb-8 md:mb-12 text-3xl md:text-5xl transition-all duration-1000 ease-out ${
-            isServicesVisible 
-              ? 'opacity-100 transform translate-y-0' 
-              : 'opacity-0 transform translate-y-8'
-          }`}
-        >
-          <p className="text-center">OUR SERVICES</p> 
-          <span><HandPlatter size={isMobile ? 32 : 40}/></span>
-        </div>
-        <div id="services" className="w-full">
-          <Services isVisible={isServicesVisible} />
-        </div>
+    <div className="bg-gradient-to-br from-gray-950 via-gray-900 to-gray-950">
+      {/* Header */}
+      <div className=" w-full z-50 fixed bg-black/80 backdrop-blur-sm md:bg-transparent md:backdrop-blur-none">
+        <NavBarComponet />
       </div>
 
-      {/* Features Section - Mobile Optimized */}
-      <div className="w-full min-h-screen flex flex-col justify-center items-center bg-gradient-to-t from-black via-gray-900 to-black px-4 md:px-8 py-12 md:py-20">
-        <div className="text-center mb-12 md:mb-16">
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4 leading-tight">
-            Why <span className="text-gray-600">Partner</span> With Us?
-          </h2>
-          <p className="text-base md:text-lg text-gray-500 max-w-2xl mx-auto leading-relaxed px-4">
-            We combine technical excellence with business understanding to deliver results that matter
-          </p>
-        </div>
-        
-        <div id="features" className="w-full">
-          <FeaturesSectionDemo />
-        </div>
+      {/* Hero Section */}
+      <HeroSection />
+      {/* <Spotlight /> */}
+
+      {/* Services Section */}
+
+      <div id="services" className="w-full">
+        <Services isVisible={true} />
       </div>
+
+      {/* Why Choose Us Section */}
+    <section className="no-scrollbar">
+        <StickyScrollRevealDemo />
+      </section>
+
+      {/* CTA Section */}
 
       {/* Testimonials Section */}
       <div id="testimonials" className="w-full">
         <Component />
       </div>
-
-      {/* Contact/Footer Section */}
-      <div id="contact" className="w-full">
+      <section className="py-20 px-4">
+        <div className="container mx-auto text-center">
+          <div className="bg-gradient-to-r from-blue-500/10 to-green-500/10 backdrop-blur-sm border border-gray-700 rounded-3xl p-12">
+            <h2 className="text-4xl font-bold text-white mb-6">
+              Ready to Transform Your Business?
+            </h2>
+            <p className="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
+              Let's discuss how we can help you build the digital solutions that
+              will take your business to the next level.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Button
+                size="lg"
+                className="text-lg px-8 py-3 bg-gradient-to-r from-blue-500 to-green-500 hover:from-blue-600 hover:to-green-600 text-white border-0"
+              >
+                Get Free Consultation
+                <ArrowRight className="ml-2 w-5 h-5" />
+              </Button>
+              <Button
+                size="lg"
+                variant="outline"
+                className="text-lg px-8 py-3 border-gray-600 text-gray-300 hover:bg-gray-800 hover:text-white"
+              >
+                View Portfolio
+              </Button>
+            </div>
+          </div>
+        </div>
+      </section>
+      {/* Footer */}
+      <footer className="bg-black/40 backdrop-blur-sm border-t border-gray-800 text-white ">
         <Footer />
-      </div>
-    </>
+      </footer>
+    </div>
   );
 }

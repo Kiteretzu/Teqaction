@@ -2,7 +2,6 @@
 import React from "react";
 import { StickyScroll } from "../ui/Whychoose";
 
-
 const content = [
   {
     title: "Collaborative Editing",
@@ -38,7 +37,7 @@ const content = [
       <div className="flex h-full w-full items-center justify-center bg-[linear-gradient(to_bottom_right,var(--orange-500),var(--yellow-500))] text-white">
         Version control
       </div>
-    ),
+    ),  
   },
   {
     title: "Running out of content",
@@ -54,15 +53,12 @@ const content = [
 export function StickyScrollRevealDemo() {
   return (
     <div className="w-full h-full no-scrollbar text-white flex flex-col justify-center items-center">
-
-       
-            <h1 className="text-4xl font-bold mb-8">Why Choose Us</h1>
-            <p className="text-lg max-w-2xl text-center mb-12">
-            Discover the unique features that set us apart and make your
-            collaboration seamless and efficient.
-            </p>
-      <StickyScroll   />
-      
+      <h1 className="text-4xl font-bold mb-8">Why Choose Us</h1>
+      <p className="text-lg max-w-2xl text-center mb-12">
+        Discover the unique features that set us apart and make your
+        collaboration seamless and efficient.
+      </p>
+      <StickyScroll />
     </div>
   );
 }

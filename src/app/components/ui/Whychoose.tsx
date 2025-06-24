@@ -155,7 +155,7 @@ export const StickyScroll = ({
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-100px" }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="bg-gradient-to-br from-gray-900 to-gray-800 rounded-2xl p-6 shadow-xl"
+                className=" rounded-2xl p-6 shadow-xl"
               >
                 {/* Mobile Content Card */}
                 <div className="mb-6">
@@ -241,10 +241,7 @@ export const StickyScroll = ({
   return (
     <div className="px-4 lg:px-20 w-full mx-auto">
       <motion.div
-        style={{
-          background: backgroundColors[activeCard % backgroundColors.length],
-        }}
-        className="relative flex h-[40rem] justify-center space-x-10 overflow-y-auto rounded-xl p-8 shadow-2xl"
+        className="relative flex h-[40rem] justify-center space-x-10 overflow-y-auto rounded-xl p-8"
         ref={ref}
       >
         {/* Content Section */}
@@ -367,7 +364,7 @@ export const StickyScroll = ({
           </motion.div>
         </div>
       </motion.div>
-    </div>
+    </div>  
   );
 };
 
