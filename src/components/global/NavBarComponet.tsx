@@ -11,7 +11,7 @@ import {
   MobileNavMenu,
 } from "@/components/ui/Navbar";
 import { useState, useEffect, useCallback } from "react";
-import Button from "@/components/ui/Button";
+import Button from "@/components/ui/button";
 function NavBarComponet() {
   const navItems = [
     {
