@@ -1,13 +1,13 @@
 "use client";
 
-import HeroSection from "./components/global/HeroSection";
-import NavBarComponet from "./components/global/NavBarComponet";
-import DarkCTASection from "./components/global/Ready-to-transform";
-import { StickyScrollRevealDemo } from "./components/global/WhyChooseUs";
-import Footer from "./components/ui/Footer";
-import Component from "./components/ui/ParallaxTestimony";
-import Services from "./components/ui/Services";
-import { Spotlight } from "./components/ui/spotlight-new";
+import { ThreeDMarqueeDemo } from "@/components/global/TestSection";
+import HeroSection from "../components/global/HeroSection";
+import NavBarComponet from "../components/global/NavBarComponet";
+import DarkCTASection from "../components/global/Ready-to-transform";
+import Services from "../components/global/Services";
+import Footer from "../components/ui/Footer";
+import Component from "../components/ui/ParallaxTestimony";
+import { Spotlight } from "../components/ui/spotlight-new";
 
 export default function HomePage() {
   return (
@@ -24,21 +24,21 @@ export default function HomePage() {
       {/* Services Section */}
 
       <div id="services" className="w-full">
-        <Services isVisible={true} />
+        <Services />
       </div>
 
       {/* Why Choose Us Section */}
-      <section className="no-scrollbar">
+      {/* <section className="no-scrollbar">
         <StickyScrollRevealDemo />
-      </section>
+        </section> */}
 
       {/* CTA Section */}
-
+      <ThreeDMarqueeDemo />
+      <DarkCTASection />
       {/* Testimonials Section */}
       <div id="testimonials" className="w-full">
         <Component />
       </div>
-      <DarkCTASection />
       {/* Footer */}
       <footer className="bg-black/40 backdrop-blur-sm border-t border-gray-800 text-white ">
         <Footer />

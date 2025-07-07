@@ -150,3 +150,16 @@
 .custom-scrollbar::-webkit-scrollbar-track {
   background: transparent;
 }
+
+@keyframes pulse-custom {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+.animate-pulse-custom {
+  animation: pulse-custom 5s infinite;
+}
