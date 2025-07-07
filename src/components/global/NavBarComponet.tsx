@@ -9,7 +9,7 @@ import {
   MobileNavHeader,
   MobileNavToggle,
   MobileNavMenu,
-} from "../ui/Navbar";
+} from "@/components/ui/Navbar";
 import { useState, useEffect, useCallback } from "react";
 import Button from "../ui/Button";
 function NavBarComponet() {
