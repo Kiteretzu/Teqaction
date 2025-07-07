@@ -151,7 +151,7 @@ export const NavBody = ({
         minWidth: "800px",
       }}
       className={cn(
-        "relative z-[60] mx-auto hidden w-full max-w-7xl flex-row items-center justify-between self-start rounded-full bg-transparent px-6 py-3 lg:flex",
+        "relative z-[60] mx-auto hidden w-full max-w-[60%] flex-row items-center justify-between self-start rounded-full bg-transparent px-6 py-3 lg:flex",
 
         className
       )}
