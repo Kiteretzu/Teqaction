@@ -136,7 +136,7 @@ export const NavBody = ({
           visible && !isAtTop
             ? "0 0 40px rgba(255, 165, 0, 0.3), 0 8px 32px rgba(30, 144, 255, 0.2), 0 0 0 1px rgba(255, 165, 0, 0.4), 0 4px 20px rgba(0, 0, 0, 0.4), 0 16px 68px rgba(0, 0, 0, 0.2), 0 1px 0 rgba(255, 165, 0, 0.3) inset"
             : "none",
-        width: visible && !isAtTop ? "45%" : "100%",
+        width: visible && !isAtTop ? "50%" : "100%",
         y: visible && !isAtTop ? 20 : 0,
         opacity: visible ? 1 : 0,
       }}
