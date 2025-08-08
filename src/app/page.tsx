@@ -1,14 +1,11 @@
 "use client";
 
-import { ThreeDMarqueeDemo } from "@/components/global/TestSection";
+import { StickyScrollRevealDemo } from "@/components/global/WhyChooseUs";
 import HeroSection from "../components/global/HeroSection";
 import NavBarComponet from "../components/global/NavBarComponet";
-import DarkCTASection from "../components/global/Ready-to-transform";
-import Services from "../components/global/Services";
-import Footer from "../components/ui/Footer";
-import Component from "../components/ui/ParallaxTestimony";
+import Footer from "../components/global/Footer";
+import Testimonial from "../components/global/ParallaxTestimony";
 import { Spotlight } from "../components/ui/spotlight-new";
-
 export default function HomePage() {
   return (
     <div className="bg-gradient-to-br relative from-gray-950 overflow-hidden via-gray-900 to-gray-950">
@@ -24,7 +21,7 @@ export default function HomePage() {
       {/* Services Section */}
 
       <div id="services" className="w-full">
-        <Services />
+        <StickyScrollRevealDemo />
       </div>
 
       {/* Why Choose Us Section */}
@@ -32,12 +29,11 @@ export default function HomePage() {
         <StickyScrollRevealDemo />
         </section> */}
 
-      {/* CTA Section */}
-      <ThreeDMarqueeDemo />
-      <DarkCTASection />
+      
+      
       {/* Testimonials Section */}
       <div id="testimonials" className="w-full">
-        <Component />
+        <Testimonial />
       </div>
       {/* Footer */}
       <footer className="bg-black/40 backdrop-blur-sm border-t border-gray-800 text-white ">

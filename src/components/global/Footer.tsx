@@ -27,21 +27,21 @@ const Button = ({
   color?: "primary" | "secondary";
 }) => {
   const baseClasses =
-    "group relative overflow-hidden rounded-full font-semibold transition-all duration-300 flex items-center justify-center gap-2 cursor-pointer transform hover:scale-105";
+    "group relative overflow-hidden rounded-full font-semibold transition-all duration-300 flex items-center justify-center gap-2 cursor-pointer transform hover:scale-105 active:scale-95";
 
   const colorClasses =
     color === "primary"
-      ? "bg-gradient-to-r from-red-600 to-orange-600 hover:from-orange-600 hover:to-red-600 text-white shadow-lg hover:shadow-xl hover:shadow-red-500/20"
+      ? "bg-gradient-to-r from-red-600 to-orange-600 text-white shadow-lg hover:shadow-xl hover:shadow-red-500/25"
       : "border-2 border-gray-700/50 text-gray-300 hover:bg-red-600/10 hover:text-white hover:border-red-500/50 backdrop-blur-sm";
 
   return (
     <button
       className={`${baseClasses} ${paddingX} ${paddingY} ${colorClasses}`}
     >
-      <span className="relative z-10">{label}</span>
-      <ArrowRight className="ml-2 w-4 h-4 transform group-hover:translate-x-1 transition-transform duration-200" />
+      <span className="relative z-10 transition-all duration-200">{label}</span>
+      <ArrowRight className="w-4 h-4 transform group-hover:translate-x-1 transition-transform duration-200" />
       {color === "primary" && (
-        <div className="absolute inset-0 bg-gradient-to-r from-orange-600 to-red-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+        <div className="absolute inset-0 bg-gradient-to-r from-orange-600 to-red-700 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-full" />
       )}
     </button>
   );
@@ -92,32 +92,30 @@ const Footer: React.FC = () => {
       <div className="absolute bottom-1/4 left-1/4 w-20 h-20 bg-orange-500/5 rounded-full blur-lg animate-pulse" />
 
       {/* Decorative Skulls */}
-      <div className="absolute top-8 right-8 opacity-5">
+      <div className="absolute top-8 right-8 opacity-5 hover:opacity-10 transition-opacity duration-200">
         <Skull size={48} className="text-red-500" />
       </div>
-      <div className="absolute bottom-8 left-8 opacity-5">
+      <div className="absolute bottom-8 left-8 opacity-5 hover:opacity-10 transition-opacity duration-200">
         <Crown size={36} className="text-orange-500" />
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 py-16 lg:py-24">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start">
           {/* Left Section - Hero Content */}
-          <div
-            className="space-y-8"
-          >
+          <div className="space-y-8">
             <div className="space-y-6">
               {/* Badge */}
-              <div className="inline-flex items-center gap-2 px-4 py-2 bg-black/20 backdrop-blur-sm border border-gray-800/50 rounded-full text-sm text-gray-300">
+              <div className="inline-flex items-center gap-2 px-4 py-2 bg-black/20 backdrop-blur-sm border border-gray-800/50 rounded-full text-sm text-gray-300 hover:bg-black/30 hover:border-gray-700/70 transition-all duration-200">
                 <Crown size={16} className="text-red-500" />
                 <span className="font-medium">Digital Dominion</span>
               </div>
 
               <h1 className="text-4xl lg:text-6xl font-bold leading-tight">
-                <span className="block">Our Company</span>
-                <span className="block bg-gradient-to-r from-red-500 via-orange-600 to-red-600 bg-clip-text text-transparent bg-300% animate-gradient">
+                <span className="block hover:text-gray-200 transition-colors duration-200">Our Company</span>
+                <span className="block bg-gradient-to-r from-red-500 via-orange-600 to-red-600 bg-clip-text text-transparent hover:from-orange-500 hover:to-red-500 transition-all duration-200">
                   helps you to grow
                 </span>
-                <span className="block text-gray-300">your business fast.</span>
+                <span className="block text-gray-300 hover:text-white transition-colors duration-200">your business fast.</span>
               </h1>
 
               {/* Decorative Elements */}
@@ -127,20 +125,17 @@ const Footer: React.FC = () => {
                     <Star
                       key={i}
                       size={14}
-                      className="text-red-500 fill-current animate-pulse"
-                      style={{ animationDelay: `${i * 0.1}s` }}
+                      className="text-red-500 fill-current hover:text-orange-500 transition-colors duration-200"
                     />
                   ))}
                 </div>
-                <span className="text-gray-400 text-sm">
+                <span className="text-gray-400 text-sm hover:text-gray-300 transition-colors duration-200">
                   Forged by Digital Legends
                 </span>
               </div>
             </div>
 
-            <div
-              className=""
-            >
+            <div>
               <Button
                 label="Summon Our Dark Powers"
                 link=""
@@ -151,18 +146,16 @@ const Footer: React.FC = () => {
             </div>
 
             {/* Additional Dark Info */}
-            <div
-              className="flex items-center gap-6 text-sm text-gray-400"
-            >
-              <div className="flex items-center gap-2">
+            <div className="flex items-center gap-6 text-sm text-gray-400">
+              <div className="flex items-center gap-2 hover:text-orange-400 transition-colors duration-200">
                 <Zap size={14} className="text-orange-500" />
                 <span>Lightning Fast</span>
               </div>
-              <div className="flex items-center gap-2">
+              <div className="flex items-center gap-2 hover:text-red-400 transition-colors duration-200">
                 <Eye size={14} className="text-red-500" />
                 <span>Always Watching</span>
               </div>
-              <div className="flex items-center gap-2">
+              <div className="flex items-center gap-2 hover:text-red-400 transition-colors duration-200">
                 <Skull size={14} className="text-red-500" />
                 <span>No Mercy</span>
               </div>
@@ -170,12 +163,10 @@ const Footer: React.FC = () => {
           </div>
 
           {/* Right Section - Navigation Links */}
-          <div
-            className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12"
-          >
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12">
             {/* Platform Column */}
             <div className="space-y-6 group">
-              <h3 className="text-lg font-semibold text-white flex items-center gap-2">
+              <h3 className="text-lg font-semibold text-white flex items-center gap-2 hover:text-red-400 transition-colors duration-200">
                 <Crown size={16} className="text-red-500" />
                 Platform
               </h3>
@@ -185,15 +176,14 @@ const Footer: React.FC = () => {
                     <li key={item}>
                       <a
                         href={`#${item.toLowerCase()}`}
-                        className={`text-gray-400 hover:text-red-400 transition-all duration-300 hover:translate-x-2 block transform relative group ${
+                        className={`text-gray-400 hover:text-red-400 transition-all duration-200 block ${
                           isVisible
-                            ? "translate-x-0 opacity-100"
-                            : "-translate-x-4 opacity-0"
+                            ? "opacity-100"
+                            : "opacity-0"
                         }`}
-                        style={{ transitionDelay: `${index * 100}ms` }}
+                        
                       >
-                        <span className="relative z-10">{item}</span>
-                        <div className="absolute left-0 top-1/2 w-0 h-0.5 bg-gradient-to-r from-red-500 to-orange-500 group-hover:w-full transition-all duration-300 transform -translate-y-1/2" />
+                        {item}
                       </a>
                     </li>
                   )
@@ -203,7 +193,7 @@ const Footer: React.FC = () => {
 
             {/* Resources Column */}
             <div className="space-y-6 group">
-              <h3 className="text-lg font-semibold text-white flex items-center gap-2">
+              <h3 className="text-lg font-semibold text-white flex items-center gap-2 hover:text-orange-400 transition-colors duration-200">
                 <Zap size={16} className="text-orange-500" />
                 Resources
               </h3>
@@ -213,15 +203,14 @@ const Footer: React.FC = () => {
                     <li key={item}>
                       <a
                         href={`#${item.toLowerCase()}`}
-                        className={`text-gray-400 hover:text-orange-400 transition-all duration-300 hover:translate-x-2 block transform relative group ${
+                        className={`text-gray-400 hover:text-orange-400 transition-all duration-200 block ${
                           isVisible
-                            ? "translate-x-0 opacity-100"
-                            : "-translate-x-4 opacity-0"
+                            ? "opacity-100"
+                            : "opacity-0"
                         }`}
-                        style={{ transitionDelay: `${(index + 4) * 100}ms` }}
+                        
                       >
-                        <span className="relative z-10">{item}</span>
-                        <div className="absolute left-0 top-1/2 w-0 h-0.5 bg-gradient-to-r from-orange-500 to-red-500 group-hover:w-full transition-all duration-300 transform -translate-y-1/2" />
+                        {item}
                       </a>
                     </li>
                   )
@@ -231,7 +220,7 @@ const Footer: React.FC = () => {
 
             {/* Legals Column */}
             <div className="space-y-6 group">
-              <h3 className="text-lg font-semibold text-white flex items-center gap-2">
+              <h3 className="text-lg font-semibold text-white flex items-center gap-2 hover:text-red-400 transition-colors duration-200">
                 <Skull size={16} className="text-red-500" />
                 Legals
               </h3>
@@ -245,29 +234,28 @@ const Footer: React.FC = () => {
                   <li key={item}>
                     <a
                       href={`#${item.toLowerCase()}`}
-                      className={`text-gray-400 hover:text-red-400 transition-all duration-300 hover:translate-x-2 block transform relative group ${
+                      className={`text-gray-400 hover:text-red-400 transition-all duration-300 hover:color-orange-900 block transform relative group/link ${
                         isVisible
                           ? "translate-x-0 opacity-100"
                           : "-translate-x-4 opacity-0"
-                      }`}
-                      style={{ transitionDelay: `${(index + 8) * 100}ms` }}
-                    >
-                      <span className="relative z-10">{item}</span>
-                      <div className="absolute left-0 top-1/2 w-0 h-0.5 bg-gradient-to-r from-red-500 to-orange-500 group-hover:w-full transition-all duration-300 transform -translate-y-1/2" />
-                    </a>
-                  </li>
-                ))}
+                        }`}
+                        
+                      >
+                        <span className="relative z-10">{item}</span>
+                        
+                      </a>
+                    </li>
+                  )
+                )}
               </ul>
             </div>
           </div>
         </div>
 
         {/* Social Media Section */}
-        <div
-          className="mt-16 pt-8 border-t border-gray-800/50"
-        >
+        <div className="mt-16 pt-8 border-t border-gray-800/50">
           <div className="flex flex-col md:flex-row justify-between items-center space-y-6 md:space-y-0">
-            <div className="text-gray-400 flex items-center gap-2">
+            <div className="text-gray-400 flex items-center gap-2 hover:text-red-400 transition-colors duration-200">
               <Eye size={16} className="text-red-500" />
               <span>Follow us into the shadows:</span>
             </div>
@@ -293,23 +281,20 @@ const Footer: React.FC = () => {
                 <a
                   key={label}
                   href="#"
-                  className={`text-gray-400 ${color} transition-all duration-300 hover:scale-110 hover:-translate-y-1 transform relative group ${
+                  className={`text-gray-400 ${color} transition-all duration-200 hover:scale-105 transform ${
                     isVisible ? "scale-100 opacity-100" : "scale-0 opacity-0"
                   }`}
                   style={{ transitionDelay: `${index * 100 + 1200}ms` }}
                   aria-label={label}
                 >
                   <Icon size={24} />
-                  <div className="absolute inset-0 bg-gradient-to-r from-red-500/20 to-orange-500/20 rounded-full scale-0 group-hover:scale-150 transition-transform duration-300 -z-10" />
                 </a>
               ))}
             </div>
           </div>
 
           {/* Copyright */}
-          <div
-            className="mt-8 text-center text-gray-500 text-sm"
-          >
+          <div className="mt-8 text-center text-gray-500 text-sm hover:text-gray-400 transition-colors duration-200">
             <p>
               © 2025 Digital Dominion. All rights reserved. Forged in the depths
               of innovation.

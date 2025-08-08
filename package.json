@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "@radix-ui/react-slot": "^1.2.3",
-    "@react-three/drei": "^10.4.4",
+    "@react-three/drei": "^10.6.1",
     "@react-three/fiber": "^9.0.0",
     "@tabler/icons-react": "^3.34.0",
     "@tsparticles/engine": "^3.8.1",

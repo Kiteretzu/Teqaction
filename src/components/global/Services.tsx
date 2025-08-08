@@ -1,13 +1,12 @@
-import { useState, useEffect } from "react";
 import {
+  ArrowRight,
+  Cloud,
+  Globe,
   Server,
   Smartphone,
-  Globe,
-  Cloud,
-  Target,
-  ArrowRight,
-  Zap,
+  Zap
 } from "lucide-react";
+import { useEffect, useState } from "react";
 
 interface Service {
   id: string;
@@ -136,7 +135,7 @@ const Services = () => {
             isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
           }`}
         >
-          <h2 className="text-5xl md:text-7xl lg:text-8xl font-bold mb-8 leading-tight">
+          <h2 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-8 leading-tight">
             <span className="text-white block mb-2 drop-shadow-2xl tracking-tight">
               Fueling
             </span>
@@ -145,7 +144,7 @@ const Services = () => {
             </span>
           </h2>
 
-          <p className="text-xl md:text-2xl text-gray-300 mb-12 max-w-3xl mx-auto leading-relaxed drop-shadow-lg">
+          <p className="text-lg md:text-xl text-gray-300 mb-12 max-w-3xl mx-auto leading-relaxed drop-shadow-lg">
             We partner with ambitious brands to{" "}
             <span className="text-orange-400 font-semibold">fuel growth</span>{" "}
             and deliver{" "}

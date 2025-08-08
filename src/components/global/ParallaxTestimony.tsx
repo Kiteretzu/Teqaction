@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from "react";
 import { Quote, Skull, Eye, Zap, Crown, Star } from "lucide-react";
-import { ThreeDMarqueeDemo } from "../global/TestSection";
 
 const testimonials = [
   {
@@ -92,39 +91,39 @@ const TestimonialCard = ({
 
   return (
     <div
-      className={`w-80 flex-shrink-0 mx-4 transform transition-all duration-1000 ${
+      className={`w-64 sm:w-72 md:w-80 flex-shrink-0 mx-1.5 sm:mx-4 transform transition-all duration-1000 ${
         isVisible ? "translate-y-0 opacity-100" : "translate-y-12 opacity-0"
       }`}
     >
-      <div className="group relative bg-black/30 backdrop-blur-sm border border-gray-800/50 shadow-2xl rounded-2xl overflow-hidden hover:shadow-red-500/20 hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 hover:scale-105">
+      <div className="group relative bg-black/30 backdrop-blur-sm border border-gray-800/50 shadow-2xl rounded-xl sm:rounded-2xl overflow-hidden hover:shadow-red-500/20 hover:shadow-2xl transition-all duration-500 hover:-translate-y-1 sm:hover:-translate-y-2 hover:scale-[1.02] sm:hover:scale-105">
         {/* Glow Effect */}
         <div className="absolute inset-0 bg-gradient-to-r from-red-500/5 to-orange-600/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
         {/* Border Glow */}
-        <div className="absolute inset-0 rounded-2xl border border-red-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+        <div className="absolute inset-0 rounded-xl sm:rounded-2xl border border-red-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
-        <div className="relative p-6 z-10">
+        <div className="relative p-3 sm:p-4 md:p-6 z-10">
           {/* Header */}
-          <div className="flex items-center justify-between mb-6">
-            <div className="p-2 bg-black/40 rounded-xl border border-gray-800/50">
+          <div className="flex items-center justify-between mb-3 sm:mb-4 md:mb-6">
+            <div className="p-1 sm:p-1.5 md:p-2 bg-black/40 rounded-lg border border-gray-800/50">
               <Quote
                 className="text-red-500 group-hover:text-orange-500 transition-colors duration-300"
-                size={20}
+                size={14}
               />
             </div>
             <div
-              className={`h-12 w-12 rounded-full bg-gradient-to-br ${testimonial.theme} flex items-center justify-center text-white font-bold text-sm shadow-lg transform group-hover:rotate-12 group-hover:scale-110 transition-all duration-300`}
+              className={`h-8 w-8 sm:h-10 sm:w-10 md:h-12 md:w-12 rounded-full bg-gradient-to-br ${testimonial.theme} flex items-center justify-center text-white font-bold text-xs shadow-lg transform group-hover:rotate-12 group-hover:scale-110 transition-all duration-300`}
             >
               {testimonial.initials}
             </div>
           </div>
 
           {/* Rating */}
-          <div className="flex items-center gap-1 mb-4">
+          <div className="flex items-center gap-0.5 sm:gap-1 mb-3 sm:mb-4">
             {[...Array(testimonial.rating)].map((_, i) => (
               <Star
                 key={i}
-                size={16}
+                size={12}
                 className="text-red-500 fill-current transform group-hover:scale-110 transition-transform duration-300"
                 style={{ animationDelay: `${i * 0.1}s` }}
               />
@@ -132,22 +131,22 @@ const TestimonialCard = ({
           </div>
 
           {/* Content */}
-          <p className="text-gray-200 mb-6 leading-relaxed text-base font-medium group-hover:text-white transition-colors duration-300">
+          <p className="text-gray-200 mb-3 sm:mb-4 md:mb-6 leading-relaxed text-xs sm:text-sm md:text-base font-medium group-hover:text-white transition-colors duration-300">
             <span className="text-red-500 font-bold">"</span>
             {testimonial.content}
             <span className="text-red-500 font-bold">"</span>
           </p>
 
           {/* Author Info */}
-          <div className="flex items-center gap-3 pt-4 border-t border-gray-800/50 group-hover:border-gray-700/50 transition-colors duration-300">
+          <div className="flex items-center gap-1.5 sm:gap-2 md:gap-3 pt-2.5 sm:pt-3 md:pt-4 border-t border-gray-800/50 group-hover:border-gray-700/50 transition-colors duration-300">
             <div className="flex-1">
-              <div className="flex items-center gap-2 mb-1">
-                <p className="font-bold text-white text-base group-hover:text-red-100 transition-colors duration-300">
+              <div className="flex items-center gap-1 sm:gap-1.5 md:gap-2 mb-0.5 sm:mb-1">
+                <p className="font-bold text-white text-xs sm:text-sm md:text-base group-hover:text-red-100 transition-colors duration-300">
                   {testimonial.name}
                 </p>
-                <Crown size={14} className="text-red-500 opacity-70" />
+                <Crown size={10} className="text-red-500 opacity-70 sm:w-3 sm:h-3" />
               </div>
-              <p className="text-sm text-gray-400 group-hover:text-gray-300 transition-colors duration-300">
+              <p className="text-xs text-gray-400 group-hover:text-gray-300 transition-colors duration-300 leading-snug">
                 {testimonial.role} at{" "}
                 <span className="text-red-500 font-semibold group-hover:text-orange-500 transition-colors duration-300">
                   {testimonial.company}
@@ -157,8 +156,8 @@ const TestimonialCard = ({
           </div>
 
           {/* Decorative Elements */}
-          <div className="absolute top-4 right-4 opacity-20 group-hover:opacity-40 transition-opacity duration-300">
-            <Skull size={24} className="text-red-500" />
+          <div className="absolute top-2 right-2 sm:top-3 sm:right-3 md:top-4 md:right-4 opacity-20 group-hover:opacity-40 transition-opacity duration-300">
+            <Skull size={14} className="text-red-500 sm:w-4 sm:h-4 md:w-6 md:h-6" />
           </div>
         </div>
       </div>
@@ -174,12 +173,12 @@ const Button = ({
   onClick?: () => void;
 }) => (
   <button
-    className="group relative overflow-hidden rounded-full font-semibold transition-all duration-300 flex items-center gap-2 cursor-pointer px-8 py-4 bg-gradient-to-r from-red-600 to-orange-600 hover:from-orange-600 hover:to-red-600 text-white shadow-lg hover:shadow-xl hover:shadow-red-500/20 transform hover:scale-105"
+    className="group relative overflow-hidden rounded-full font-semibold transition-all duration-300 flex items-center gap-2 cursor-pointer px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-red-600 to-orange-600 hover:from-orange-600 hover:to-red-600 text-white text-sm sm:text-base shadow-lg hover:shadow-xl hover:shadow-red-500/20 transform hover:scale-105"
     onClick={onClick}
   >
     <span className="relative z-10">{label}</span>
     <div className="relative z-10 transform group-hover:translate-x-1 group-hover:scale-110 transition-transform duration-200">
-      <Eye size={18} />
+      <Eye size={16} />
     </div>
     <div className="absolute inset-0 bg-gradient-to-r from-orange-600 to-red-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
   </button>
@@ -220,7 +219,7 @@ export default function DarkTestimonials() {
   return (
     <section
       id="testimonials-section"
-      className="relative min-h-screen bg-gradient-to-tr from-slate-900 via-gray-900 to-black overflow-hidden py-20"
+      className="relative min-h-screen bg-gradient-to-bl from-slate-900 via-gray-900 to-black overflow-hidden py-12 sm:py-20"
     >
       {/* Aurora Effect */}
       <div className="absolute inset-0 overflow-hidden">
@@ -228,30 +227,30 @@ export default function DarkTestimonials() {
       </div>
 
       {/* Decorative Elements */}
-      <div className="absolute top-20 left-10 w-20 h-20 bg-red-500/10 rounded-full blur-xl animate-pulse" />
-      <div className="absolute bottom-20 right-10 w-32 h-32 bg-orange-500/10 rounded-full blur-xl animate-pulse" />
+      <div className="absolute top-10 sm:top-20 left-5 sm:left-10 w-16 h-16 sm:w-20 sm:h-20 bg-red-500/10 rounded-full blur-xl animate-pulse" />
+      <div className="absolute bottom-10 sm:bottom-20 right-5 sm:right-10 w-20 h-20 sm:w-32 sm:h-32 bg-orange-500/10 rounded-full blur-xl animate-pulse" />
 
       <div className="relative z-10 mx-auto px-4 sm:px-6">
         {/* Header */}
         <div
-          className={`text-center mb-16 transform transition-all duration-1000 ${
+          className={`text-center mb-8 sm:mb-16 transform transition-all duration-1000 ${
             isVisible ? "translate-y-0 opacity-100" : "translate-y-12 opacity-0"
           }`}
         >
           {/* Badge */}
-          <div className="inline-flex items-center gap-2 px-4 py-2 bg-black/20 backdrop-blur-sm border border-gray-800/50 rounded-full text-sm text-gray-300 mb-8">
-            <Skull size={16} className="text-red-500" />
+          <div className="inline-flex items-center gap-2 px-3 sm:px-4 py-2 bg-black/20 backdrop-blur-sm border border-gray-800/50 rounded-full text-xs sm:text-sm text-gray-300 mb-6 sm:mb-8">
+            <Skull size={14} className="text-red-500" />
             <span className="font-medium">Testimonials from the Shadows</span>
           </div>
 
-          <h2 className="text-2xl sm:text-4xl md:text-6xl lg:text-7xl font-bold mb-6">
-            <span className="text-white block mb-2">Whispers of</span>
+          <h2 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold mb-4 sm:mb-6">
+            <span className="text-white block mb-1 sm:mb-2">Whispers of</span>
             <span className="bg-gradient-to-r from-red-500 via-orange-600 to-red-600 bg-clip-text text-transparent bg-300% animate-gradient">
               Dark Satisfaction
             </span>
           </h2>
 
-          <p className="text-base sm:text-lg md:text-xl text-gray-300 max-w-3xl mx-auto px-4">
+          <p className="text-sm sm:text-base md:text-lg lg:text-xl text-gray-300 max-w-3xl mx-auto px-2 sm:px-4">
             Hear the testimonies of those who dared to embrace our{" "}
             <span className="text-red-500 font-semibold">
               forbidden methodologies
@@ -262,12 +261,12 @@ export default function DarkTestimonials() {
 
         {/* Horizontal Scrolling Testimonials */}
         <div
-          className={`relative overflow-hidden rounded-3xl transform transition-all duration-1000 delay-300 ${
+          className={`relative overflow-hidden rounded-2xl sm:rounded-3xl transform transition-all duration-1000 delay-300 ${
             isVisible ? "opacity-100" : "opacity-0"
           }`}
         >
           {/* First Row - Moving Right to Left */}
-          <div className="mb-8">
+          <div className="mb-4 sm:mb-8">
             <div className="flex animate-scroll-left">
               {extendedTestimonials.map((testimonial, index) => (
                 <TestimonialCard
@@ -280,7 +279,7 @@ export default function DarkTestimonials() {
           </div>
 
           {/* Second Row - Moving Left to Right */}
-          <div className="mb-8">
+          <div className="mb-4 sm:mb-8">
             <div className="flex animate-scroll-right">
               {[...extendedTestimonials].reverse().map((testimonial, index) => (
                 <TestimonialCard
@@ -293,11 +292,24 @@ export default function DarkTestimonials() {
           </div>
 
           {/* Gradient Overlays */}
-          <div className="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-black via-gray-900/80 to-transparent pointer-events-none z-20" />
-          <div className="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-black via-gray-900/80 to-transparent pointer-events-none z-20" />
+          
         </div>
 
-
+        {/* CTA Section */}
+        {/* CTA Section */}
+<div
+  className={`text-center mt-8 sm:mt-16 transform transition-all duration-1000 delay-500 ${
+    isVisible ? "translate-y-0 opacity-100" : "translate-y-12 opacity-0"
+  }`} 
+>
+  <p className="text-gray-400 mb-6 sm:mb-8 text-sm sm:text-base">
+    Ready to join the ranks of the digitally enlightened?
+  </p>
+  
+  <div className="flex justify-center">
+    <Button label="Begin Your Dark Journey" />
+  </div>
+</div>
       </div>
 
       <style jsx>{`
@@ -340,11 +352,21 @@ export default function DarkTestimonials() {
         }
 
         .animate-scroll-left {
-          animation: scroll-left 30s linear infinite;
+          animation: scroll-left 40s linear infinite;
         }
 
         .animate-scroll-right {
-          animation: scroll-right 35s linear infinite;
+          animation: scroll-right 45s linear infinite;
+        }
+
+        @media (max-width: 640px) {
+          .animate-scroll-left {
+            animation: scroll-left 25s linear infinite;
+          }
+
+          .animate-scroll-right {
+            animation: scroll-right 30s linear infinite;
+          }
         }
       `}</style>
     </section>

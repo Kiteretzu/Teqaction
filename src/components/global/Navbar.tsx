@@ -63,6 +63,15 @@ export const Navbar = ({ children, className }: NavbarProps) => {
     const atTop = latest < 70;
     setIsAtTop(atTop);
 
+    // ✅ NEW: Check if mobile (match your breakpoint, e.g., lg = 1024px)
+    const isMobile = window.innerWidth < 1024;
+    if (isMobile) {
+      // Always keep navbar visible on mobile
+      setVisible(true);
+      return;
+    }
+
+    // Desktop scroll-hide behavior
     if (atTop) {
       setVisible(true);
       setIsScrolling(false);
@@ -79,7 +88,7 @@ export const Navbar = ({ children, className }: NavbarProps) => {
         clearTimeout(scrollTimeoutRef.current);
       }
 
-      // Don't hide navbar if it's being hovered
+      // Don't hide navbar if it's hovered
       scrollTimeoutRef.current = setTimeout(() => {
         if (scrollY.get() >= 50 && !isHovered) {
           setIsScrolling(false);
@@ -121,6 +130,7 @@ export const Navbar = ({ children, className }: NavbarProps) => {
     </motion.div>
   );
 };
+
 
 export const NavBody = ({
   children,
@@ -176,7 +186,7 @@ export const NavItems = ({ items, className, onItemClick }: NavItemsProps) => {
         <a
           onMouseEnter={() => setHovered(idx)}
           onClick={onItemClick}
-          className="relative px-5 py-2 text-gray-300 hover:text-white transition-colors duration-200 text-base font-medium"
+          className="relative px-3 py-2 text-gray-300 hover:text-white transition-colors duration-200 text-base font-medium"
           key={`link-${idx}`}
           href={item.link}
         >
@@ -317,7 +327,7 @@ export const NavbarLogo = () => {
   return (
     <a
       href="#"
-      className="relative z-20 mr-4 flex items-center space-x-2 px-2 py-1 text-sm font-normal"
+      className="relative z-20  mr-3 flex items-center space-x-2 px-4 py-1 text-sm font-normal"
     >
       <img src="/logo.png" alt="logo" width={30} height={30} />
       <span className="font-medium text-3xl text-white">Teqaction</span>

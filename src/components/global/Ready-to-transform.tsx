@@ -12,13 +12,13 @@ const Button = ({
   onClick,
 }: {
   children: React.ReactNode;
-  variant?: "primary" | "outline";
+  variant?: "primary" | "outline"
   size?: "lg";
   className?: string;
   onClick?: () => void;
 }) => {
   const baseClasses =
-    "group relative overflow-hidden rounded-full font-semibold transition-all duration-300 flex items-center justify-center gap-2 cursor-pointer transform hover:scale-105";
+    "group relative overflow-hidden rounded-full font-semibold transition-all duration-300 flex items-center justify-center gap-2  transform hover:scale-105";
 
   const sizeClasses = size === "lg" ? "px-8 py-4 text-lg" : "px-6 py-3";
 
@@ -68,7 +68,7 @@ export default function DarkCTASection() {
   return (
     <section
       id="cta-section"
-      className="relative py-20 px-4 bg-gradient-to-br from-black via-gray-900 to-slate-900 overflow-hidden"
+      className="relative py-5 px-4 bg-gradient-to-br from-black via-gray-900 to-slate-900 overflow-hidden"
     >
       {/* Aurora Effect */}
       <div className="absolute inset-0 overflow-hidden">
@@ -89,7 +89,7 @@ export default function DarkCTASection() {
           </div>
 
           {/* Main Heading */}
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4">
             Ready to{" "}
             <span className="bg-gradient-to-r from-red-500 via-orange-600 to-red-600 bg-clip-text text-transparent bg-300% animate-gradient">
               Transform
@@ -97,12 +97,18 @@ export default function DarkCTASection() {
             Your Digital Realm?
           </h2>
 
-          <GlobeDemo />
+          {/* Non-interactable Globe */}
+          {/* <div className="w-full h-full z-30 absolute "></div> */}
+          <div className="pointer-events-none  select-none">
+            <GlobeDemo />
+          </div>
+
+
 
           {/* Additional Info */}
-          <div className="mt-8 flex flex-col items-center justify-center gap-6 text-sm text-gray-400">
+          <div className="mt-8  flex flex-col items-center justify-center gap-6 text-sm text-gray-400">
             {/* CTA Buttons */}
-            <Button className="flex justify-center bg-amber-700 ">
+            <Button className="flex z-50 justify-center bg-amber-700 ">
               Book a meeting
               <ArrowRight className="ml-3 inline" />
             </Button>
