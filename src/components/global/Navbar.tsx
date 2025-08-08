@@ -327,7 +327,7 @@ export const NavbarLogo = () => {
   return (
     <a
       href="#"
-      className="relative z-20  mr-3 flex items-center space-x-2 px-4 py-1 text-sm font-normal"
+      className="relative z-20  mr-3 flex items-center space-x-2  py-1 text-sm font-normal"
     >
       <img src="/logo.png" alt="logo" width={30} height={30} />
       <span className="font-medium text-3xl text-white">Teqaction</span>
