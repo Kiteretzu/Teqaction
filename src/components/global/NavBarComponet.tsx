@@ -1,17 +1,16 @@
-import React from "react";
+import Button from "@/components/ui/button";
 import {
+  MobileNav,
+  MobileNavHeader,
+  MobileNavMenu,
+  MobileNavToggle,
   Navbar,
+  NavbarButton,
+  NavbarLogo,
   NavBody,
   NavItems,
-  MobileNav,
-  NavbarLogo,
-  NavbarButton,
-  MobileNavHeader,
-  MobileNavToggle,
-  MobileNavMenu,
-} from "@/components/ui/Navbar";
-import { useState, useEffect, useCallback } from "react";
-import Button from "@/components/ui/button";
+} from "@/components/global/Navbar";
+import { useCallback, useEffect, useState } from "react";
 function NavBarComponet() {
   const navItems = [
     {
@@ -69,12 +68,12 @@ function NavBarComponet() {
       <NavBody>
         <NavbarLogo />
         <NavItems items={navItems} />
-        <div className="hidden md:flex items-center gap-4">
+        <div className="hidden md:flex items-center  gap-4">
           <Button
             label="Book Now"
             link=""
             position="right"
-            paddingX="px-4"
+            paddingX="px-3"
             paddingY="py-2"
           />
         </div>
@@ -104,7 +103,7 @@ function NavBarComponet() {
               <span className="block">{item.name}</span>
             </a>
           ))}
-          <div className="flex w-full flex-col gap-4 mt-6 px-4">
+          <div className="flex w-full flex-col gap-4 mt-6  px-2">
             <NavbarButton
               onClick={handleMobileMenuClose}
               variant="primary"

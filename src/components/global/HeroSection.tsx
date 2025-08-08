@@ -1,6 +1,6 @@
 "use client";
 import { motion } from "framer-motion";
-import { MapPin, Camera, ArrowRight } from "lucide-react";
+import { ArrowRight, Camera } from "lucide-react";
 
 const Button = ({
   label,
@@ -76,8 +76,8 @@ export default function HeroSection() {
       </div>
 
       {/* Bottom Gradient Overlay with Soft Glow */}
-      <div className="absolute bottom-0 left-0 right-0 h-64 bg-gradient-to-t from-black/90 via-black/70 to-transparent z-10 pointer-events-none">
-        <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-48 h-10 bg-gradient-to-r from-red-500 via-orange-500 to-red-500 blur-xl opacity-70" />
+      <div className="absolute bottom-0 left-0 right-0 h-64 bg-gradient-to-t from-black/60 via-black/50 to-transparent z-10 pointer-events-none">
+        
       </div>
 
       {/* Aurora Effect */}
@@ -105,7 +105,7 @@ export default function HeroSection() {
         >
           {/* Main Headline */}
           <motion.h1
-            className="text-3xl sm:text-5xl md:text-7xl lg:text-8xl mt-16 font-bold mb-8 leading-tight"
+            className="text-4xl sm:text-5xl md:text-7xl lg:text-7xl mt-0 sm:mt-0 md:mt-20 lg:mt-30 font-bold mb-8 leading-tight"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.3 }}
@@ -128,7 +128,7 @@ export default function HeroSection() {
 
           {/* Subtitle */}
           <motion.p
-            className="text-base sm:text-lg md:text-2xl text-gray-100 mb-12 max-w-3xl mx-auto leading-relaxed drop-shadow-lg"
+            className="text-xl sm:text-lg md:text-2xl text-gray-100 mb-12 max-w-3xl mx-auto leading-relaxed drop-shadow-lg"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.6 }}
@@ -162,33 +162,7 @@ export default function HeroSection() {
           </motion.div>
 
           {/* Stats */}
-          <motion.div
-            className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8 max-w-3xl mx-auto px-4"
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 1 }}
-          >
-            {[
-              { number: "50+", label: "Projects Delivered", icon: "🚀" },
-              { number: "100+", label: "Happy Clients", icon: "⭐" },
-              { number: "24/7", label: "Support Available", icon: "💬" },
-            ].map((stat, index) => (
-              <motion.div
-                key={index}
-                className="text-center p-6 bg-black/40 backdrop-blur-sm border border-gray-700/50 rounded-3xl hover:bg-black/60 transition-all duration-300 shadow-2xl"
-                whileHover={{ y: -5, scale: 1.02 }}
-                transition={{ duration: 0.3 }}
-              >
-                <div className="text-2xl mb-2">{stat.icon}</div>
-                <div className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-red-500 to-orange-600 bg-clip-text text-transparent mb-2">
-                  {stat.number}
-                </div>
-                <div className="text-gray-300 text-sm font-medium">
-                  {stat.label}
-                </div>
-              </motion.div>
-            ))}
-          </motion.div>
+          
         </motion.div>
       </div>
 
