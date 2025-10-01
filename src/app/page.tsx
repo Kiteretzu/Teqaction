@@ -6,7 +6,10 @@ import NavBarComponet from "../components/global/NavBarComponet";
 import Footer from "../components/global/Footer";
 import Testimonial from "../components/global/ParallaxTestimony";
 import { Spotlight } from "../components/ui/spotlight-new";
+import useHotjar from "@/hooks/useHotjar";
 export default function HomePage() {
+  useHotjar(6535537); // 👈 only runs here
+
   return (
     <div className="bg-gradient-to-br relative from-gray-950 overflow-hidden via-gray-900 to-gray-950">
       {/* Header */}
@@ -29,8 +32,6 @@ export default function HomePage() {
         <StickyScrollRevealDemo />
         </section> */}
 
-      
-      
       {/* Testimonials Section */}
       <div id="testimonials" className="w-full">
         <Testimonial />
